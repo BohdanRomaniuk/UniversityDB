@@ -16,7 +16,9 @@ namespace UniversityDB.Models
         [Required]
         public string Name { get; set; }
         public int Class { get; set; }
-
+        public int? ParentId { get; set; }
+        [ForeignKey("ParentId")]
+        public UObject Parent { get; set; }
         public List<UObject> Childrens { get; set; }
 
         public UObject()
