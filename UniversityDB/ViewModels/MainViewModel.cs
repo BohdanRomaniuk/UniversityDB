@@ -10,13 +10,14 @@ using UniversityDB.Models;
 using System.Data.Entity;
 using System.Windows.Input;
 using System.Windows;
+using System.Collections.ObjectModel;
 
 namespace UniversityDB.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private List<UObject> faculties;
-        public List<UObject> Faculties
+        private ObservableCollection<UObject> faculties;
+        public ObservableCollection<UObject> Faculties
         {
             get
             {
@@ -49,7 +50,7 @@ namespace UniversityDB.ViewModels
             using (var db = new UniversityContext())
             {
                 UObject root = db.Objects.Include(o => o.Childrens.Select(e => e.Childrens.Select(a=>a.Childrens))).FirstOrDefault();
-                Faculties = new List<UObject>();
+                Faculties = new ObservableCollection<UObject>();
                 Faculties.Add(root);
             }
         }

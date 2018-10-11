@@ -15,8 +15,8 @@
                     <Setter Property="bindTreeViewExpand:Behaviours.ExpandingBehaviour" Value="{Binding ExpandingCommand}"/>
                 </Style>
                 -->
-                <HierarchicalDataTemplate DataType="{x:Type model:UObject}" ItemsSource="{Binding Path=Childrens}">
-                    <TextBlock Text="{Binding Path=Name}">
+                <HierarchicalDataTemplate DataType="{x:Type model:UObject}" ItemsSource="{Binding Path=Childrens, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBlock Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}">
                         <TextBlock.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Command="{Binding ViewCommand}" CommandParameter="{Binding Id}" Header="Переглянути"/>

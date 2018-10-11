@@ -61,6 +61,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Forms\UObjectWindow.xaml.cs">
+      <DependentUpon>UObjectWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\Command.cs" />
     <Compile Include="Infrastructure\UniversityContext.cs" />
     <Compile Include="Migrations\201809272132182_Initial.cs" />
@@ -74,7 +77,12 @@
     <Compile Include="Models\UPerson.cs" />
     <Compile Include="Models\UStudyingPerson.cs" />
     <Compile Include="Models\UWorkingPerson.cs" />
+    <Compile Include="ViewModels\Forms\UObjectViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Page Include="Forms\UObjectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

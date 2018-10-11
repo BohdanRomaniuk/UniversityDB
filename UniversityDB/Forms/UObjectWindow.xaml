@@ -1,0 +1,33 @@
+﻿<Window x:Class="UniversityDB.Forms.UObjectWindow"
+        x:Name="ObjectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UniversityDB.Forms"
+        mc:Ignorable="d"
+        Title="{Binding Info.Name, UpdateSourceTrigger=PropertyChanged}" Height="193" Width="278.151">
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Content="Ідентифікатор:" Margin="3"/>
+        <TextBox Text="{Binding Info.Id}" Grid.Column="1" Margin="3"/>
+        <Label Content="Назва:" Grid.Row="1" Margin="3"/>
+        <TextBox Text="{Binding Info.Name, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" Margin="3"/>
+        <Label Content="Клас:" Grid.Row="2" Margin="3"/>
+        <TextBox Text="{Binding Info.Сlass}" Grid.Row="2" Grid.Column="1" Margin="3"/>
+        <Label Content="Батьківський тип:" Grid.Row="3" Margin="3"/>
+        <TextBox Text="{Binding Info.Id}" Grid.Row="3" Grid.Column="1" Margin="3"/>
+        <Button Content="Застосувати" Command="{Binding SaveCommand}" Grid.Row="4" Margin="3"/>
+        <Button Content="Скасувати" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=ObjectWindow}" Grid.Row="4" Grid.Column="1" Margin="3"/>
+    </Grid>
+</Window>
