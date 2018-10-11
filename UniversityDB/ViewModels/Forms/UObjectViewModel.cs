@@ -48,7 +48,10 @@ namespace UniversityDB.ViewModels.Forms
         private void Save(object parametr)
         {
             db.SaveChanges();
-            MessageBox.Show("Успішно збережено!", "Важливе повідомлення");
+            if (MessageBox.Show("Зміни успішно збережено!", "Важливе повідомлення", MessageBoxButton.OK, MessageBoxImage.Asterisk) == MessageBoxResult.OK)
+            {
+                Cancel(parametr);
+            }
         }
 
         private void Cancel(object parametr)

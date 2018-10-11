@@ -1,4 +1,5 @@
 ﻿<Window x:Class="UniversityDB.MainWindow"
+        x:Name="MainW"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,18 +9,20 @@
         mc:Ignorable="d"
         Title="UniversityDB" Height="450" Width="800">
     <Grid>
-        <TreeView ItemsSource="{Binding Faculties}">
+        <TreeView x:Name="treeView" ItemsSource="{Binding Faculties}" >
             <TreeView.Resources>
                 <!--
                 <Style TargetType="TreeViewItem">
                     <Setter Property="bindTreeViewExpand:Behaviours.ExpandingBehaviour" Value="{Binding ExpandingCommand}"/>
                 </Style>
                 -->
-                <HierarchicalDataTemplate DataType="{x:Type model:UObject}" ItemsSource="{Binding Path=Childrens, UpdateSourceTrigger=PropertyChanged}">
-                    <TextBlock Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}">
+                <HierarchicalDataTemplate DataType="{x:Type model:UObject}" ItemsSource="{Binding Path=Childrens, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                    <TextBlock Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <TextBlock.ContextMenu>
                             <ContextMenu>
-                                <MenuItem Command="{Binding ViewCommand}" CommandParameter="{Binding Id}" Header="Переглянути"/>
+                                <MenuItem Header="Переглянути"
+                                          CommandParameter="{Binding Id}"
+                                          Command="{Binding DataContext.ViewCommand, Source={x:Reference treeView}}"/>
                                 <MenuItem  Header="Додати"/>
                                 <MenuItem  Header="Редагувати"/>
                                 <MenuItem  Header="Видалити"/>

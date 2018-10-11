@@ -11,6 +11,7 @@ using System.Data.Entity;
 using System.Windows.Input;
 using System.Windows;
 using System.Collections.ObjectModel;
+using UniversityDB.Forms;
 
 namespace UniversityDB.ViewModels
 {
@@ -34,7 +35,7 @@ namespace UniversityDB.ViewModels
 
         public MainViewModel()
         {
-            ViewCommand = new Command(ViewData);
+            ViewCommand = new Command(View);
             //using (var db = new UniversityContext())
             //{
             //    UObject fpmi = new UObject("ФПМІ", 1);
@@ -55,9 +56,10 @@ namespace UniversityDB.ViewModels
             }
         }
 
-        private void ViewData(object parametr)
+        private void View(object parametr)
         {
-            MessageBox.Show("Hello");
+            UObjectWindow window = new UObjectWindow(Convert.ToInt32(parametr));
+            window.Show();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
