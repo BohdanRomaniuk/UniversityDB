@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UniversityDB"
         xmlns:model="clr-namespace:UniversityDB.Models"
+        xmlns:bindTreeViewExpand="clr-namespace:UniversityDB.Infrastructure"
         mc:Ignorable="d"
         Title="UniversityDB" Height="450" Width="800">
     <Grid>
@@ -15,6 +16,9 @@
                     <Setter Property="bindTreeViewExpand:Behaviours.ExpandingBehaviour" Value="{Binding ExpandingCommand}"/>
                 </Style>
                 -->
+                <Style TargetType="TreeViewItem" >
+                    <Setter Property="bindTreeViewExpand:Behaviours.ExpandingBehaviour" Value="{Binding ExpandingCommand}" />
+                </Style>
                 <HierarchicalDataTemplate DataType="{x:Type model:UObject}" ItemsSource="{Binding Path=Childrens}">
                     <TextBlock Text="{Binding Path=Name}">
                         <TextBlock.ContextMenu>

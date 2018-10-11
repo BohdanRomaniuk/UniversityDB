@@ -10,12 +10,24 @@ using UniversityDB.Models;
 using System.Data.Entity;
 using System.Windows.Input;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace UniversityDB.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
         private List<UObject> faculties;
+
+        // holds reference to the object, on expand every element will be 
+        // added to this list and to children of the parent element. allObject is used
+        // to avoid searching object with specific id in the tree structure
+        // when doing specific operations by id
+        private List<UObject> allObjects = new List<UObject>();
+
+        // used to make every tree node expandable, will be replaced with real objects
+        // as soon as they will be got from the DB
+        private UObject dummyLoadingObject = new UObject("Loading", 0);
+
         public List<UObject> Faculties
         {
             get
@@ -29,11 +41,8 @@ namespace UniversityDB.ViewModels
             }
         }
 
-        public ICommand ViewCommand { get; private set; }
-
         public MainViewModel()
         {
-            ViewCommand = new Command(ViewData);
             //using (var db = new UniversityContext())
             //{
             //    UObject fpmi = new UObject("ФПМІ", 1);
@@ -48,15 +57,27 @@ namespace UniversityDB.ViewModels
             //}
             using (var db = new UniversityContext())
             {
-                UObject root = db.Objects.Include(o => o.Childrens.Select(e => e.Childrens.Select(a=>a.Childrens))).FirstOrDefault();
+                UObject root = db.Objects.FirstOrDefault();
                 Faculties = new List<UObject>();
-                Faculties.Add(root);
+                if (root != null)
+                {
+                    Faculties.Add(root);
+                    allObjects.Add(root);
+                    root.Childrens = new List<UObject> { dummyLoadingObject };
+                }
             }
         }
 
-        private void ViewData(object parametr)
+        // All we need is to handle the expanded event HERE
+
+        //Used to get objects on expanding event, from event 
+        private void AppendChildrenByParentId(UObject parent)
         {
-            MessageBox.Show("Hello");
+            using (var db = new UniversityContext())
+            {
+                var children = db.Objects.Where(o => o.ParentId == parent.Id).ToList();
+                parent.Childrens = children;
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
