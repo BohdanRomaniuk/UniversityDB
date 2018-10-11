@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="UniversityDB" Height="450" Width="800">
     <Grid>
-        <TreeView ItemsSource="{Binding Faculties}">
+        <TreeView x:Name="treeView" ItemsSource="{Binding Faculties}">
             <TreeView.Resources>
                 <!--
                 <Style TargetType="TreeViewItem">
@@ -17,7 +17,8 @@
                 </Style>
                 -->
                 <Style TargetType="TreeViewItem" >
-                    <Setter Property="bindTreeViewExpand:Behaviours.ExpandingBehaviour" Value="{Binding ExpandingCommand}" />
+                    <Setter Property="bindTreeViewExpand:Behaviours.ExpandingBehaviour" Value="{Binding DataContext.ExpandingCommand,
+                                          Source={x:Reference treeView}}" />
                 </Style>
                 <HierarchicalDataTemplate DataType="{x:Type model:UObject}" ItemsSource="{Binding Path=Childrens}">
                     <TextBlock Text="{Binding Path=Name}">

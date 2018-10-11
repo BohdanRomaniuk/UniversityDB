@@ -41,8 +41,11 @@ namespace UniversityDB.ViewModels
             }
         }
 
+        public ICommand ExpandingCommand { get; set; }
+
         public MainViewModel()
         {
+            ExpandingCommand = new Command(ExecuteExpandingCommand);
             //using (var db = new UniversityContext())
             //{
             //    UObject fpmi = new UObject("ФПМІ", 1);
@@ -68,15 +71,34 @@ namespace UniversityDB.ViewModels
             }
         }
 
-        // All we need is to handle the expanded event HERE
+        // Should be moved out of here
+        private void ExecuteExpandingCommand(object obj)
+        {
+            var args = obj as RoutedEventArgs;
+            var treeViewItem = args.Source as TreeViewItem;
+            var data = treeViewItem.DataContext as UObject; // Here is all we need
+            var id = data.Id;
+            AppendChildrenByParentId(id);
+        }
 
         //Used to get objects on expanding event, from event 
-        private void AppendChildrenByParentId(UObject parent)
+        private void AppendChildrenByParentId(int parentId)
         {
             using (var db = new UniversityContext())
             {
-                var children = db.Objects.Where(o => o.ParentId == parent.Id).ToList();
-                parent.Childrens = children;
+                var children = db.Objects.Where(o => o.ParentId == parentId).ToList();
+                var parent = allObjects.Where(o => o.Id == parentId).FirstOrDefault();
+                if (parent != null && children.Count > 0)
+                {
+                    parent.Childrens = children;
+                    allObjects.AddRange(children);
+                }
+                else if (parent != null)
+                {
+                    parent.Childrens = null;
+                }
+                // ui isn't updating
+                OnPropertyChanged(nameof(Faculties));
             }
         }
 

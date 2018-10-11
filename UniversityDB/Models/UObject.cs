@@ -26,7 +26,6 @@ namespace UniversityDB.Models
         public UObject()
         {
             ViewCommand = new Command(View);
-            ExpandingCommand = new Command(ExecuteExpandingCommand);
         }
 
         private void View(object parametr)
@@ -35,18 +34,6 @@ namespace UniversityDB.Models
         }
 
         public ICommand ViewCommand { get; private set; }
-
-        public ICommand ExpandingCommand { get; set; }
-
-        // Should be moved out of here
-        private void ExecuteExpandingCommand(object obj)
-        {
-            var args = obj as RoutedEventArgs;
-            var treeViewItem = args.Source as TreeViewItem;
-            var data = treeViewItem.DataContext as UObject; // Here is all we need
-            var id = data.Id;
-            MessageBox.Show(@"Expanded: " + id);
-        }
 
         public UObject(string _name, int _class)
         {
