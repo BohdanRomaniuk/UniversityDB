@@ -11,12 +11,13 @@ using System.Data.Entity;
 using System.Windows.Input;
 using System.Windows;
 using System.Windows.Controls;
+using System.Collections.ObjectModel;
 
 namespace UniversityDB.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private List<UObject> faculties;
+        private ObservableCollection<UObject> faculties;
 
         // holds reference to the object, on expand every element will be 
         // added to this list and to children of the parent element. allObject is used
@@ -28,7 +29,7 @@ namespace UniversityDB.ViewModels
         // as soon as they will be got from the DB
         private UObject dummyLoadingObject = new UObject("Loading", 0);
 
-        public List<UObject> Faculties
+        public ObservableCollection<UObject> Faculties
         {
             get
             {
@@ -61,12 +62,12 @@ namespace UniversityDB.ViewModels
             using (var db = new UniversityContext())
             {
                 UObject root = db.Objects.FirstOrDefault();
-                Faculties = new List<UObject>();
+                Faculties = new ObservableCollection<UObject>();
                 if (root != null)
                 {
                     Faculties.Add(root);
                     allObjects.Add(root);
-                    root.Childrens = new List<UObject> { dummyLoadingObject };
+                    root.Childrens = new ObservableCollection<UObject> { dummyLoadingObject };
                 }
             }
         }
@@ -78,27 +79,31 @@ namespace UniversityDB.ViewModels
             var treeViewItem = args.Source as TreeViewItem;
             var data = treeViewItem.DataContext as UObject; // Here is all we need
             var id = data.Id;
-            AppendChildrenByParentId(id);
+            AppendChildrenByParent(data);
         }
 
         //Used to get objects on expanding event, from event 
-        private void AppendChildrenByParentId(int parentId)
+        private void AppendChildrenByParent(UObject parent)
         {
             using (var db = new UniversityContext())
             {
-                var children = db.Objects.Where(o => o.ParentId == parentId).ToList();
-                var parent = allObjects.Where(o => o.Id == parentId).FirstOrDefault();
-                if (parent != null && children.Count > 0)
+                var children = new ObservableCollection<UObject>(db.Objects.Where(o => o.ParentId == parent.Id).ToList());
+                if (parent != null)
                 {
-                    parent.Childrens = children;
-                    allObjects.AddRange(children);
+                    parent.Childrens.Remove(dummyLoadingObject);
+                    foreach (var child in children)
+                    {
+                        if (!parent.Childrens.Any(c => c.Id == child.Id))
+                        {
+                            parent.Childrens.Add(child);
+                            child.Childrens = new ObservableCollection<UObject> { dummyLoadingObject };
+                        }
+                        if(!allObjects.Any(c => c.Id == child.Id))
+                        {
+                            allObjects.Add(child);
+                        }
+                    }
                 }
-                else if (parent != null)
-                {
-                    parent.Childrens = null;
-                }
-                // ui isn't updating
-                OnPropertyChanged(nameof(Faculties));
             }
         }
 
