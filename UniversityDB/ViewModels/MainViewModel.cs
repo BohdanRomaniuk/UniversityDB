@@ -60,6 +60,8 @@ namespace UniversityDB.ViewModels
         {
             UObjectWindow window = new UObjectWindow(Convert.ToInt32(parametr));
             window.Show();
+
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
