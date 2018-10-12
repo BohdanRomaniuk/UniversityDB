@@ -24,7 +24,7 @@
         <Label Content="Назва:" Grid.Row="1" Margin="3"/>
         <TextBox Text="{Binding Info.Name, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly}" Grid.Row="1" Grid.Column="1" Margin="3"/>
         <Label Content="Клас:" Grid.Row="2" Margin="3"/>
-        <TextBox Text="{Binding Info.Сlass}" IsReadOnly="{Binding IsReadOnly}" Grid.Row="2" Grid.Column="1" Margin="3"/>
+        <TextBox Text="{Binding Info.Class}" IsReadOnly="{Binding IsReadOnly}" Grid.Row="2" Grid.Column="1" Margin="3"/>
         <Label Content="Батьківський тип:" Grid.Row="3" Margin="3"/>
         <TextBox Text="{Binding Info.Id}" IsReadOnly="{Binding IsReadOnly}" Grid.Row="3" Grid.Column="1" Margin="3"/>
         <Button Content="Застосувати" Command="{Binding SaveCommand}" CommandParameter="{Binding ElementName=ObjectWindow}" Grid.Row="4" Margin="3"/>

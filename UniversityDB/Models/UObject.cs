@@ -37,12 +37,14 @@ namespace UniversityDB.Models
 
         public UObject()
         {
+            Childrens = new ObservableCollection<UObject>();
         }
 
         public UObject(string _name, int _class)
         {
             Name = _name;
             Class = _class;
+            Childrens = new ObservableCollection<UObject>();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
