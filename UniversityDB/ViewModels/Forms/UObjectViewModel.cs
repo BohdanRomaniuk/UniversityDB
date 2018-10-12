@@ -13,20 +13,20 @@ namespace UniversityDB.ViewModels.Forms
     public class UObjectViewModel : INotifyPropertyChanged
     {
         private readonly UniversityContext db;
-        private UObject info;
+        private UObject current;
         private bool isReadOnly;
         private UObject Parent { get; set; }
         private FormType Type { get; set; }
-        public UObject Info
+        public UObject Current
         {
             get
             {
-                return info;
+                return current;
             }
             set
             {
-                OnPropertyChanged(nameof(Info));
-                info = value;
+                OnPropertyChanged(nameof(Current));
+                current = value;
             }
         }
 
@@ -62,11 +62,11 @@ namespace UniversityDB.ViewModels.Forms
             if (Type == FormType.Add)
             {
                 Parent = elem;
-                Info = new UObject();
+                Current = new UObject();
             }
             else
             {
-                Info = elem;
+                Current = elem;
             }
             IsReadOnly = (Type == FormType.View) ? true : false;
 
@@ -82,10 +82,10 @@ namespace UniversityDB.ViewModels.Forms
                 {
                     Parent.Childrens = new ObservableCollection<UObject>();
                 }
-                Parent.Childrens.Add(Info);
+                Parent.Childrens.Add(Current);
             }
             db.SaveChanges();
-            if (MessageBox.Show("Зміни успішно збережено!", "Важливе повідомлення", MessageBoxButton.OK, MessageBoxImage.Asterisk) == MessageBoxResult.OK)
+            if (Type != FormType.View && MessageBox.Show("Зміни успішно збережено!", "Важливе повідомлення", MessageBoxButton.OK, MessageBoxImage.Asterisk) == MessageBoxResult.OK)
             {
                 Cancel(parameter);
             }

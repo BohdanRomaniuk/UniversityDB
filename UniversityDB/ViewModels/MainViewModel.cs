@@ -88,7 +88,9 @@ namespace UniversityDB.ViewModels
                     MessageBoxButton.OK,
                     MessageBoxImage.Question) == MessageBoxResult.OK)
             {
-                
+                //not working before merging romans PR
+                var parent = new UObject();// parameter.Parent;
+                parent.Childrens.Remove(elem);
             }
         }
 
