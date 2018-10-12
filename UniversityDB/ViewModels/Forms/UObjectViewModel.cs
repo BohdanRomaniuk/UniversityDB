@@ -36,27 +36,27 @@ namespace UniversityDB.ViewModels.Forms
             CancelCommand = new Command(Cancel);
         }
 
-        public UObjectViewModel(int id)
+        public UObjectViewModel(UObject elem)
         {
             db = new UniversityContext();
-            Info = db.Objects.Where(o => o.Id == id).SingleOrDefault();
+            Info = elem;
 
             SaveCommand = new Command(Save);
             CancelCommand = new Command(Cancel);
         }
 
-        private void Save(object parametr)
+        private void Save(object parameter)
         {
             db.SaveChanges();
             if (MessageBox.Show("Зміни успішно збережено!", "Важливе повідомлення", MessageBoxButton.OK, MessageBoxImage.Asterisk) == MessageBoxResult.OK)
             {
-                Cancel(parametr);
+                Cancel(parameter);
             }
         }
 
-        private void Cancel(object parametr)
+        private void Cancel(object parameter)
         {
-            Window currentWindow = (Window)parametr;
+            Window currentWindow = (Window)parameter;
             if (currentWindow != null)
             {
                 currentWindow.Close();

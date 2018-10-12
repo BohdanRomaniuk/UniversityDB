@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using UniversityDB.Models;
 using UniversityDB.ViewModels.Forms;
 
 namespace UniversityDB.Forms
@@ -13,10 +14,10 @@ namespace UniversityDB.Forms
         }
 
         //View and Edit
-        public UObjectWindow(int id)
+        public UObjectWindow(UObject elem)
         {
-            DataContext = new UObjectViewModel(id);
-            InitializeComponent();
+            DataContext = new UObjectViewModel(elem);
+            InitializeComponent(); InitializeComponent();
         }
     }
 }

@@ -58,10 +58,8 @@ namespace UniversityDB.ViewModels
 
         private void View(object parametr)
         {
-            UObjectWindow window = new UObjectWindow(Convert.ToInt32(parametr));
+            UObjectWindow window = new UObjectWindow(parametr as UObject);
             window.Show();
-
-
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

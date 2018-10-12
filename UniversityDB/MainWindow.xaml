@@ -21,7 +21,7 @@
                         <TextBlock.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="Переглянути"
-                                          CommandParameter="{Binding Id}"
+                                          CommandParameter="{Binding}"
                                           Command="{Binding DataContext.ViewCommand, Source={x:Reference treeView}}"/>
                                 <MenuItem  Header="Додати"/>
                                 <MenuItem  Header="Редагувати"/>
