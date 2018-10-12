@@ -1,22 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using UniversityDB.Infrastructure;
 using UniversityDB.Models;
-using System.Data.Entity;
 using System.Windows.Input;
 using System.Windows;
+using System.Windows.Controls;
+using System.Collections.ObjectModel;
 
 namespace UniversityDB.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private List<UObject> faculties;
-        public List<UObject> Faculties
+        private ObservableCollection<UObject> faculties;
+
+        // used to make every tree node expandable, will be replaced with real objects
+        // as soon as they will be got from the DB
+        private UObject dummyLoadingObject = new UObject("Loading", 0);
+
+        public ObservableCollection<UObject> Faculties
         {
             get
             {
@@ -29,11 +31,11 @@ namespace UniversityDB.ViewModels
             }
         }
 
-        public ICommand ViewCommand { get; private set; }
+        public ICommand ExpandingCommand { get; set; }
 
         public MainViewModel()
         {
-            ViewCommand = new Command(ViewData);
+            ExpandingCommand = new Command(ExecuteExpandingCommand);
             //using (var db = new UniversityContext())
             //{
             //    UObject fpmi = new UObject("ФПМІ", 1);
@@ -48,15 +50,41 @@ namespace UniversityDB.ViewModels
             //}
             using (var db = new UniversityContext())
             {
-                UObject root = db.Objects.Include(o => o.Childrens.Select(e => e.Childrens.Select(a=>a.Childrens))).FirstOrDefault();
-                Faculties = new List<UObject>();
-                Faculties.Add(root);
+                UObject root = db.Objects.FirstOrDefault();
+                Faculties = new ObservableCollection<UObject>();
+                if (root != null)
+                {
+                    Faculties.Add(root);
+                    root.Childrens = new ObservableCollection<UObject> { dummyLoadingObject };
+                }
             }
         }
 
-        private void ViewData(object parametr)
+        private void ExecuteExpandingCommand(object obj)
         {
-            MessageBox.Show("Hello");
+            var data = ((obj as RoutedEventArgs).Source as TreeViewItem).DataContext as UObject;
+            AppendChildrenByParent(data);
+        }
+
+        //Used to get objects on expanding event, from event 
+        private void AppendChildrenByParent(UObject parent)
+        {
+            using (var db = new UniversityContext())
+            {
+                var children = new ObservableCollection<UObject>(db.Objects.Where(o => o.ParentId == parent.Id).ToList());
+                if (parent != null)
+                {
+                    parent.Childrens.Remove(dummyLoadingObject);
+                    foreach (var child in children)
+                    {
+                        if (!parent.Childrens.Any(c => c.Id == child.Id))
+                        {
+                            parent.Childrens.Add(child);
+                            child.Childrens = new ObservableCollection<UObject> { dummyLoadingObject };
+                        }
+                    }
+                }
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
