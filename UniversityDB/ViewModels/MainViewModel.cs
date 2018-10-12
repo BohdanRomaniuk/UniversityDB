@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows;
 using System.Collections.ObjectModel;
 using UniversityDB.Forms;
+using UniversityDB.Infrastructure.Enums;
 
 namespace UniversityDB.ViewModels
 {
@@ -31,11 +32,17 @@ namespace UniversityDB.ViewModels
             }
         }
 
-        public ICommand ViewCommand { get; private set; }
+        public ICommand AddCommand { get; }
+        public ICommand ViewCommand { get; }
+        public ICommand EditCommand { get; }
+        public ICommand DeleteCommand { get; }
 
         public MainViewModel()
         {
+            AddCommand = new Command(Add);
             ViewCommand = new Command(View);
+            EditCommand = new Command(Edit);
+            DeleteCommand = new Command(Delete);
             //using (var db = new UniversityContext())
             //{
             //    UObject fpmi = new UObject("ФПМІ", 1);
@@ -56,10 +63,33 @@ namespace UniversityDB.ViewModels
             }
         }
 
-        private void View(object parametr)
+        private void View(object parameter)
         {
-            UObjectWindow window = new UObjectWindow(parametr as UObject);
+            UObjectWindow window = new UObjectWindow(parameter as UObject, FormType.View);
             window.Show();
+        }
+
+        private void Edit(object parameter)
+        {
+            UObjectWindow window = new UObjectWindow(parameter as UObject, FormType.Edit);
+            window.Show();
+        }
+
+        private void Add(object parameter)
+        {
+            UObjectWindow window = new UObjectWindow(parameter as UObject, FormType.Add);
+            window.Show();
+        }
+
+        private void Delete(object parameter)
+        {
+            var elem = parameter as UObject;
+            if (MessageBox.Show($"Ви впевнені що хочете видалити \"{elem.Name}\"?\nВидалення призведе до знищення всіх похідних обєктів!", "Підтвердження",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Question) == MessageBoxResult.OK)
+            {
+                
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

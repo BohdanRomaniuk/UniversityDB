@@ -1,9 +1,11 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 using UniversityDB.Infrastructure;
+using UniversityDB.Infrastructure.Enums;
 using UniversityDB.Models;
 
 namespace UniversityDB.ViewModels.Forms
@@ -12,6 +14,8 @@ namespace UniversityDB.ViewModels.Forms
     {
         private readonly UniversityContext db;
         private UObject info;
+        private bool isReadOnly;
+        private FormType Type { get; set; }
         public UObject Info
         {
             get
@@ -25,21 +29,37 @@ namespace UniversityDB.ViewModels.Forms
             }
         }
 
+        public bool IsReadOnly
+        {
+            get
+            {
+                return isReadOnly;
+
+            }
+            set
+            {
+                isReadOnly = value;
+                OnPropertyChanged(nameof(IsReadOnly));
+            }
+        }
+
         public ICommand SaveCommand { get; private set; }
         public ICommand CancelCommand { get; private set; }
 
         public UObjectViewModel()
         {
             db = new UniversityContext();
-
+            IsReadOnly = false;
             SaveCommand = new Command(Save);
             CancelCommand = new Command(Cancel);
         }
 
-        public UObjectViewModel(UObject elem)
+        public UObjectViewModel(UObject elem, FormType type)
         {
             db = new UniversityContext();
             Info = elem;
+            Type = type;
+            IsReadOnly = (Type == FormType.View) ? true : false;
 
             SaveCommand = new Command(Save);
             CancelCommand = new Command(Cancel);
@@ -47,6 +67,14 @@ namespace UniversityDB.ViewModels.Forms
 
         private void Save(object parameter)
         {
+            if (Type == FormType.Add)
+            {
+                if (Info.Childrens == null)
+                {
+                    Info.Childrens = new ObservableCollection<UObject>();
+                }
+                Info.Childrens.Add(new UObject("asdasd",1));
+            }
             db.SaveChanges();
             if (MessageBox.Show("Зміни успішно збережено!", "Важливе повідомлення", MessageBoxButton.OK, MessageBoxImage.Asterisk) == MessageBoxResult.OK)
             {
