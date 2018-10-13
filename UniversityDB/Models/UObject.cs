@@ -1,13 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System;
-using System.Windows.Input;
-using UniversityDB.Forms;
-using UniversityDB.Infrastructure;
-using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace UniversityDB.Models
 {
@@ -33,6 +29,9 @@ namespace UniversityDB.Models
             }
         }
         public int Class { get; set; }
+        public int? ParentId { get; set; }
+        [ForeignKey("ParentId")]
+        public UObject Parent { get; set; }
         public ObservableCollection<UObject> Childrens { get; set; }
 
         public UObject()

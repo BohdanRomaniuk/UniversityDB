@@ -64,12 +64,17 @@
     <Compile Include="Forms\UObjectWindow.xaml.cs">
       <DependentUpon>UObjectWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Behaviours.cs" />
     <Compile Include="Infrastructure\Command.cs" />
     <Compile Include="Infrastructure\Enums\FormType.cs" />
     <Compile Include="Infrastructure\UniversityContext.cs" />
     <Compile Include="Migrations\201809272132182_Initial.cs" />
     <Compile Include="Migrations\201809272132182_Initial.Designer.cs">
       <DependentUpon>201809272132182_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810111308044_SelfFKNullable.cs" />
+    <Compile Include="Migrations\201810111308044_SelfFKNullable.Designer.cs">
+      <DependentUpon>201810111308044_SelfFKNullable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SClass.cs" />
@@ -113,6 +118,9 @@
     </Compile>
     <EmbeddedResource Include="Migrations\201809272132182_Initial.resx">
       <DependentUpon>201809272132182_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810111308044_SelfFKNullable.resx">
+      <DependentUpon>201810111308044_SelfFKNullable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
