@@ -13,6 +13,8 @@ using System.Windows;
 using System.Collections.ObjectModel;
 using UniversityDB.Forms;
 using UniversityDB.Infrastructure.Enums;
+using System.Reflection;
+using System.Globalization;
 
 namespace UniversityDB.ViewModels
 {
@@ -46,7 +48,7 @@ namespace UniversityDB.ViewModels
             //using (var db = new UniversityContext())
             //{
             //    UObject fpmi = new UObject("ФПМІ", 1);
-            //    fpmi.Childrens = new List<UObject>();
+            //    fpmi.Childrens = new ObservableCollection<UObject>();
             //    fpmi.Childrens.Add(new UObject("Деканат", 1));
             //    fpmi.Childrens.Add(new UObject("КІС", 1));
             //    fpmi.Childrens.Add(new UObject("КДАІС", 1));
@@ -65,8 +67,24 @@ namespace UniversityDB.ViewModels
 
         private void View(object parameter)
         {
-            UObjectWindow window = new UObjectWindow(parameter as UObject, FormType.View);
-            window.Show();
+            string type = parameter.GetType().Name;
+            string formName = "UObjectWindow";
+            using (UniversityContext db = new UniversityContext())
+            {
+                //not working before merging Romans PR
+                //Select FormName of current Object and set it to formName variable
+            }
+            Type formType = Assembly.GetExecutingAssembly().GetType("UniversityDB.Forms.UObjectWindow");
+            Window form = (Window)Activator.CreateInstance(formType, new object[2] { parameter as UObject, FormType.View });
+            Window form2 = (Window)Assembly.GetExecutingAssembly().CreateInstance(
+                    "UniversityDB.Forms." + formName,
+                    true,
+                    BindingFlags.Default,
+                    null,
+                    new object[2] { parameter as UObject, FormType.View },
+                    CultureInfo.CurrentCulture,
+                    null);
+            form.Show();
         }
 
         private void Edit(object parameter)
@@ -88,7 +106,7 @@ namespace UniversityDB.ViewModels
                     MessageBoxButton.OK,
                     MessageBoxImage.Question) == MessageBoxResult.OK)
             {
-                //not working before merging romans PR
+                //not working before merging Romans PR
                 var parent = new UObject();// parameter.Parent;
                 parent.Childrens.Remove(elem);
             }
