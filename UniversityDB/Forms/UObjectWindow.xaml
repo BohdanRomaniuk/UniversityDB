@@ -25,9 +25,9 @@
             <Label Content="Назва:" Grid.Row="1"/>
             <TextBox Text="{Binding Current.Name, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly}" Grid.Row="1" Grid.Column="1" Margin="3"/>
             <Label Content="Клас:" Grid.Row="2"/>
-            <TextBox Text="{Binding Current.Class}" IsReadOnly="{Binding IsReadOnly}" Grid.Row="2" Grid.Column="1" Margin="3"/>
+            <TextBox Text="{Binding Current.Class.Name}" IsReadOnly="True" Grid.Row="2" Grid.Column="1" Margin="3"/>
             <Label Content="Батьківський тип:" Grid.Row="3"/>
-            <TextBox Text="{Binding Current.Id}" IsReadOnly="{Binding IsReadOnly}" Grid.Row="3" Grid.Column="1" Margin="3"/>
+            <TextBox Text="{Binding Current.Parent.Name}" IsReadOnly="True" Grid.Row="3" Grid.Column="1" Margin="3"/>
         </Grid>
         <Grid DockPanel.Dock="Bottom">
             <Grid.ColumnDefinitions>

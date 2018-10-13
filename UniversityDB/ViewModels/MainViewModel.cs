@@ -10,6 +10,7 @@ using UniversityDB.Infrastructure.Enums;
 using System.Reflection;
 using System.Windows.Controls;
 using System;
+using System.Data.Entity;
 
 namespace UniversityDB.ViewModels
 {
@@ -65,8 +66,11 @@ namespace UniversityDB.ViewModels
             //}
             using (var db = new UniversityContext())
             {
-                UObject root = db.Objects.FirstOrDefault();
                 Faculties = new ObservableCollection<UObject>();
+                UObject root = db.Objects.Where(o => o.ParentId == null)
+                    .Include(o=>o.Class)
+                    .FirstOrDefault();
+                root.Parent = new UObject("Немає", 1);
                 if (root != null)
                 {
                     Faculties.Add(root);
@@ -75,14 +79,46 @@ namespace UniversityDB.ViewModels
             }
         }
 
+        private void Expand(object obj)
+        {
+            var data = ((obj as RoutedEventArgs).Source as TreeViewItem).DataContext as UObject;
+            AppendChildrenByParent(data);
+        }
+
+        private void AppendChildrenByParent(UObject parent)
+        {
+            using (var db = new UniversityContext())
+            {
+                var children = new ObservableCollection<UObject>(db.Objects.Where(o => o.ParentId == parent.Id)
+                    .Include(o => o.Class)
+                    .Include(o => o.Parent)
+                    .ToList());
+                if (parent != null)
+                {
+                    parent.Childrens.Remove(loadingObject);
+                    foreach (var child in children)
+                    {
+                        if (!parent.Childrens.Any(c => c.Id == child.Id))
+                        {
+                            parent.Childrens.Add(child);
+                            child.Childrens = new ObservableCollection<UObject> { loadingObject };
+                        }
+                    }
+                }
+            }
+        }
+
         private void View(object parameter)
         {
-            string objectTypeName = parameter.GetType().Name;
+            string className = parameter.GetType().Name;
             string formName = "UObjectWindow";
             using (UniversityContext db = new UniversityContext())
             {
-                //not working before merging Romans PR
-                //Select FormName of current Object and set it to formName variable
+                string formNameFromDb = db.Classes.Where(c => c.Name == className).SingleOrDefault().FormName;
+                if(formNameFromDb != null)
+                {
+                    formName = formNameFromDb;
+                }
             }
             Type formType = Assembly.GetExecutingAssembly().GetType($"UniversityDB.Forms.{formName}");
             Window form = (Window)Activator.CreateInstance(formType, new object[2] { parameter as UObject, FormType.View });
@@ -91,12 +127,15 @@ namespace UniversityDB.ViewModels
 
         private void Edit(object parameter)
         {
-            string objectTypeName = parameter.GetType().Name;
+            string className = parameter.GetType().Name;
             string formName = "UObjectWindow";
             using (UniversityContext db = new UniversityContext())
             {
-                //not working before merging Romans PR
-                //Select FormName of current Object and set it to formName variable
+                string formNameFromDb = db.Classes.Where(c => c.Name == className).SingleOrDefault().FormName;
+                if (formNameFromDb != null)
+                {
+                    formName = formNameFromDb;
+                }
             }
             Type formType = Assembly.GetExecutingAssembly().GetType($"UniversityDB.Forms.{formName}");
             Window form = (Window)Activator.CreateInstance(formType, new object[2] { parameter as UObject, FormType.Edit });
@@ -105,12 +144,15 @@ namespace UniversityDB.ViewModels
 
         private void Add(object parameter)
         {
-            string objectTypeName = parameter.GetType().Name;
+            string className = parameter.GetType().Name;
             string formName = "UObjectWindow";
             using (UniversityContext db = new UniversityContext())
             {
-                //not working before merging Romans PR
-                //Select FormName of current Object and set it to formName variable
+                string formNameFromDb = db.Classes.Where(c => c.Name == className).SingleOrDefault().FormName;
+                if (formNameFromDb != null)
+                {
+                    formName = formNameFromDb;
+                }
             }
             Type formType = Assembly.GetExecutingAssembly().GetType($"UniversityDB.Forms.{formName}");
             Window form = (Window)Activator.CreateInstance(formType, new object[2] { parameter as UObject, FormType.Add });
@@ -127,32 +169,6 @@ namespace UniversityDB.ViewModels
                 //not working before merging Romans PR
                 var parent = new UObject();// parameter.Parent;
                 parent.Childrens.Remove(elem);
-            }
-        }
-
-        private void Expand(object obj)
-        {
-            var data = ((obj as RoutedEventArgs).Source as TreeViewItem).DataContext as UObject;
-            AppendChildrenByParent(data);
-        }
-
-        private void AppendChildrenByParent(UObject parent)
-        {
-            using (var db = new UniversityContext())
-            {
-                var children = new ObservableCollection<UObject>(db.Objects.Where(o => o.ParentId == parent.Id).ToList());
-                if (parent != null)
-                {
-                    parent.Childrens.Remove(loadingObject);
-                    foreach (var child in children)
-                    {
-                        if (!parent.Childrens.Any(c => c.Id == child.Id))
-                        {
-                            parent.Childrens.Add(child);
-                            child.Childrens = new ObservableCollection<UObject> { loadingObject };
-                        }
-                    }
-                }
             }
         }
 
