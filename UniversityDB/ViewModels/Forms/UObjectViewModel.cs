@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -62,7 +63,13 @@ namespace UniversityDB.ViewModels.Forms
             if (Type == FormType.Add)
             {
                 Parent = elem;
-                Current = new UObject();
+                Current = new UObject()
+                {
+                    Parent = elem,
+                    ParentId = elem.Id,
+                    Class = elem.Class,
+                    ClassId = elem.ClassId
+                };
             }
             else
             {
@@ -78,17 +85,21 @@ namespace UniversityDB.ViewModels.Forms
         {
             if (Type == FormType.Add)
             {
+                Current.Class = null;
+                Current.Parent = null;
+                db.Objects.Add(Current);
+                db.SaveChanges();
                 if (Parent.Childrens == null)
                 {
                     Parent.Childrens = new ObservableCollection<UObject>();
                 }
-                Parent.Childrens.Add(Current);
+                UObject objectFromDb = db.Objects.Where(o => o.Name == Current.Name && o.ParentId == Parent.Id)
+                                           .Include(o=>o.Class)
+                                           .Include(o=>o.Parent)
+                                           .SingleOrDefault();
+                Parent.Childrens.Add(objectFromDb);
             }
-            db.SaveChanges();
-            if (Type != FormType.View && MessageBox.Show("Зміни успішно збережено!", "Важливе повідомлення", MessageBoxButton.OK, MessageBoxImage.Asterisk) == MessageBoxResult.OK)
-            {
-                Cancel(parameter);
-            }
+            Cancel(parameter);
         }
 
         private void Cancel(object parameter)
