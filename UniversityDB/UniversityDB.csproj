@@ -76,6 +76,10 @@
     <Compile Include="Migrations\201810111308044_SelfFKNullable.Designer.cs">
       <DependentUpon>201810111308044_SelfFKNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810131717597_ClassesFKRequired.cs" />
+    <Compile Include="Migrations\201810131717597_ClassesFKRequired.Designer.cs">
+      <DependentUpon>201810131717597_ClassesFKRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SClass.cs" />
     <Compile Include="Models\UMaterials.cs" />
@@ -121,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810111308044_SelfFKNullable.resx">
       <DependentUpon>201810111308044_SelfFKNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810131717597_ClassesFKRequired.resx">
+      <DependentUpon>201810131717597_ClassesFKRequired.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -16,7 +16,7 @@ namespace UniversityDB.ViewModels
     public class MainViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<UObject> faculties;
-        private UObject loadingObject = new UObject("Loading", 0);
+        private UObject loadingObject = new UObject("Loading", 1);
 
         public ObservableCollection<UObject> Faculties
         {
@@ -46,9 +46,16 @@ namespace UniversityDB.ViewModels
             DeleteCommand = new Command(Delete);
             //using (var db = new UniversityContext())
             //{
+            //    db.Classes.Add(new SClass("UObject", "UObjectWindow"));
+            //    db.SaveChanges();
+
             //    UObject fpmi = new UObject("ФПМІ", 1);
             //    fpmi.Childrens = new ObservableCollection<UObject>();
-            //    fpmi.Childrens.Add(new UObject("Деканат", 1));
+            //    fpmi.Childrens.Add(new UObject("Деканат", 1)
+            //    {
+            //        Childrens = new ObservableCollection<UObject>() { new UObject("Декан", 1) }
+            //    }
+            //    );
             //    fpmi.Childrens.Add(new UObject("КІС", 1));
             //    fpmi.Childrens.Add(new UObject("КДАІС", 1));
             //    fpmi.Childrens.Add(new UObject("КП", 1));

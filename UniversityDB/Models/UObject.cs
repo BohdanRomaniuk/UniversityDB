@@ -28,10 +28,16 @@ namespace UniversityDB.Models
                 OnPropertyChanged(nameof(Name));
             }
         }
-        public int Class { get; set; }
+
+        [Required]
+        public int ClassId { get; set; }
+        [ForeignKey("ClassId")]
+        public SClass Class { get; set; }
+
         public int? ParentId { get; set; }
         [ForeignKey("ParentId")]
         public UObject Parent { get; set; }
+
         public ObservableCollection<UObject> Childrens { get; set; }
 
         public UObject()
@@ -39,10 +45,10 @@ namespace UniversityDB.Models
             Childrens = new ObservableCollection<UObject>();
         }
 
-        public UObject(string _name, int _class)
+        public UObject(string _name, int _classId)
         {
             Name = _name;
-            Class = _class;
+            ClassId = _classId;
             Childrens = new ObservableCollection<UObject>();
         }
 
