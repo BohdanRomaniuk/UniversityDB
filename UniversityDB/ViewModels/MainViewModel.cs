@@ -67,36 +67,44 @@ namespace UniversityDB.ViewModels
 
         private void View(object parameter)
         {
-            string type = parameter.GetType().Name;
+            string objectTypeName = parameter.GetType().Name;
             string formName = "UObjectWindow";
             using (UniversityContext db = new UniversityContext())
             {
                 //not working before merging Romans PR
                 //Select FormName of current Object and set it to formName variable
             }
-            Type formType = Assembly.GetExecutingAssembly().GetType("UniversityDB.Forms.UObjectWindow");
+            Type formType = Assembly.GetExecutingAssembly().GetType($"UniversityDB.Forms.{formName}");
             Window form = (Window)Activator.CreateInstance(formType, new object[2] { parameter as UObject, FormType.View });
-            Window form2 = (Window)Assembly.GetExecutingAssembly().CreateInstance(
-                    "UniversityDB.Forms." + formName,
-                    true,
-                    BindingFlags.Default,
-                    null,
-                    new object[2] { parameter as UObject, FormType.View },
-                    CultureInfo.CurrentCulture,
-                    null);
             form.Show();
         }
 
         private void Edit(object parameter)
         {
-            UObjectWindow window = new UObjectWindow(parameter as UObject, FormType.Edit);
-            window.Show();
+            string objectTypeName = parameter.GetType().Name;
+            string formName = "UObjectWindow";
+            using (UniversityContext db = new UniversityContext())
+            {
+                //not working before merging Romans PR
+                //Select FormName of current Object and set it to formName variable
+            }
+            Type formType = Assembly.GetExecutingAssembly().GetType($"UniversityDB.Forms.{formName}");
+            Window form = (Window)Activator.CreateInstance(formType, new object[2] { parameter as UObject, FormType.Edit });
+            form.Show();
         }
 
         private void Add(object parameter)
         {
-            UObjectWindow window = new UObjectWindow(parameter as UObject, FormType.Add);
-            window.Show();
+            string objectTypeName = parameter.GetType().Name;
+            string formName = "UObjectWindow";
+            using (UniversityContext db = new UniversityContext())
+            {
+                //not working before merging Romans PR
+                //Select FormName of current Object and set it to formName variable
+            }
+            Type formType = Assembly.GetExecutingAssembly().GetType($"UniversityDB.Forms.{formName}");
+            Window form = (Window)Activator.CreateInstance(formType, new object[2] { parameter as UObject, FormType.Add });
+            form.Show();
         }
 
         private void Delete(object parameter)
