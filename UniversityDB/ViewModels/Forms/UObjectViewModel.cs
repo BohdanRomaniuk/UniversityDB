@@ -1,9 +1,11 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 using UniversityDB.Infrastructure;
+using UniversityDB.Infrastructure.Enums;
 using UniversityDB.Models;
 
 namespace UniversityDB.ViewModels.Forms
@@ -11,17 +13,34 @@ namespace UniversityDB.ViewModels.Forms
     public class UObjectViewModel : INotifyPropertyChanged
     {
         private readonly UniversityContext db;
-        private UObject info;
-        public UObject Info
+        private UObject current;
+        private bool isReadOnly;
+        private UObject Parent { get; set; }
+        private FormType Type { get; set; }
+        public UObject Current
         {
             get
             {
-                return info;
+                return current;
             }
             set
             {
-                OnPropertyChanged(nameof(Info));
-                info = value;
+                OnPropertyChanged(nameof(Current));
+                current = value;
+            }
+        }
+
+        public bool IsReadOnly
+        {
+            get
+            {
+                return isReadOnly;
+
+            }
+            set
+            {
+                isReadOnly = value;
+                OnPropertyChanged(nameof(IsReadOnly));
             }
         }
 
@@ -31,32 +50,50 @@ namespace UniversityDB.ViewModels.Forms
         public UObjectViewModel()
         {
             db = new UniversityContext();
-
+            IsReadOnly = false;
             SaveCommand = new Command(Save);
             CancelCommand = new Command(Cancel);
         }
 
-        public UObjectViewModel(int id)
+        public UObjectViewModel(UObject elem, FormType type)
         {
             db = new UniversityContext();
-            Info = db.Objects.Where(o => o.Id == id).SingleOrDefault();
+            Type = type;
+            if (Type == FormType.Add)
+            {
+                Parent = elem;
+                Current = new UObject();
+            }
+            else
+            {
+                Current = elem;
+            }
+            IsReadOnly = (Type == FormType.View) ? true : false;
 
             SaveCommand = new Command(Save);
             CancelCommand = new Command(Cancel);
         }
 
-        private void Save(object parametr)
+        private void Save(object parameter)
         {
-            db.SaveChanges();
-            if (MessageBox.Show("Зміни успішно збережено!", "Важливе повідомлення", MessageBoxButton.OK, MessageBoxImage.Asterisk) == MessageBoxResult.OK)
+            if (Type == FormType.Add)
             {
-                Cancel(parametr);
+                if (Parent.Childrens == null)
+                {
+                    Parent.Childrens = new ObservableCollection<UObject>();
+                }
+                Parent.Childrens.Add(Current);
+            }
+            db.SaveChanges();
+            if (Type != FormType.View && MessageBox.Show("Зміни успішно збережено!", "Важливе повідомлення", MessageBoxButton.OK, MessageBoxImage.Asterisk) == MessageBoxResult.OK)
+            {
+                Cancel(parameter);
             }
         }
 
-        private void Cancel(object parametr)
+        private void Cancel(object parameter)
         {
-            Window currentWindow = (Window)parametr;
+            Window currentWindow = (Window)parameter;
             if (currentWindow != null)
             {
                 currentWindow.Close();

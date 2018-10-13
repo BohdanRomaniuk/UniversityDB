@@ -65,6 +65,7 @@
       <DependentUpon>UObjectWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Command.cs" />
+    <Compile Include="Infrastructure\Enums\FormType.cs" />
     <Compile Include="Infrastructure\UniversityContext.cs" />
     <Compile Include="Migrations\201809272132182_Initial.cs" />
     <Compile Include="Migrations\201809272132182_Initial.Designer.cs">

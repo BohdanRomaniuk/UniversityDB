@@ -33,25 +33,18 @@ namespace UniversityDB.Models
             }
         }
         public int Class { get; set; }
-
         public ObservableCollection<UObject> Childrens { get; set; }
-        public ICommand ViewCommand { get; private set; }
 
         public UObject()
         {
-            ViewCommand = new Command(View);
+            Childrens = new ObservableCollection<UObject>();
         }
 
         public UObject(string _name, int _class)
         {
             Name = _name;
             Class = _class;
-        }
-
-        private void View(object parametr)
-        {
-            UObjectWindow window = new UObjectWindow(Convert.ToInt32(parametr));
-            window.Show();
+            Childrens = new ObservableCollection<UObject>();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

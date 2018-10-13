@@ -21,11 +21,17 @@
                         <TextBlock.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="Переглянути"
-                                          CommandParameter="{Binding Id}"
+                                          CommandParameter="{Binding}"
                                           Command="{Binding DataContext.ViewCommand, Source={x:Reference treeView}}"/>
-                                <MenuItem  Header="Додати"/>
-                                <MenuItem  Header="Редагувати"/>
-                                <MenuItem  Header="Видалити"/>
+                                <MenuItem  Header="Додати"
+                                           CommandParameter="{Binding}"
+                                           Command="{Binding DataContext.AddCommand, Source={x:Reference treeView}}"/>
+                                <MenuItem  Header="Редагувати"
+                                           CommandParameter="{Binding}"
+                                           Command="{Binding DataContext.EditCommand, Source={x:Reference treeView}}"/>
+                                <MenuItem  Header="Видалити"
+                                           CommandParameter="{Binding}"
+                                           Command="{Binding DataContext.DeleteCommand, Source={x:Reference treeView}}"/>
                             </ContextMenu>
                         </TextBlock.ContextMenu>
                     </TextBlock>
