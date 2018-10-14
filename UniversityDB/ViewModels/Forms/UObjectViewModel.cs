@@ -63,7 +63,6 @@ namespace UniversityDB.ViewModels.Forms
             if (Type == FormType.Add)
             {
                 Parent = elem;
-                //Element to Add
                 Current = new UObject()
                 {
                     Parent = elem,
@@ -72,15 +71,9 @@ namespace UniversityDB.ViewModels.Forms
                     ClassId = elem.ClassId
                 };
             }
-            else if(Type == FormType.View)
+            else
             {
                 Current = elem;
-            }
-            else if(Type == FormType.Edit)
-            {
-                Current = elem;
-                //Copy of current
-                Parent = (UObject)elem.Clone();
             }
             IsReadOnly = (Type == FormType.View) ? true : false;
             SaveCommand = new Command(Save);

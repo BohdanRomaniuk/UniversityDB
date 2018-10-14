@@ -9,7 +9,7 @@ using System.Windows.Input;
 namespace UniversityDB.Models
 {
     [Table("Objects")]
-    public class UObject : INotifyPropertyChanged, ICloneable
+    public class UObject : INotifyPropertyChanged
     {
         private string name;
 
@@ -59,12 +59,7 @@ namespace UniversityDB.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public object Clone()
-        {
-            return MemberwiseClone();
-        }
-
-        public void CopyPropertiesTo(UObject another)
+        public virtual void CopyPropertiesTo(UObject another)
         {
             another.Name = Name;
             another.ParentId = ParentId;
