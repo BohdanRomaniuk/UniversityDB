@@ -97,8 +97,9 @@ namespace UniversityDB.ViewModels.Forms
                 }
                 UObject objectFromDb = db.Objects.Where(o => o.Name == Current.Name && o.ParentId == Parent.Id)
                                                  .Include(o=>o.Class)
-                                                 .Include(o=>o.Parent)
                                                  .SingleOrDefault();
+                //Fix deleting bug
+                objectFromDb.Parent = Parent;
                 Parent.Childrens.Add(objectFromDb);
             }
             else if(Type == FormType.Edit)
