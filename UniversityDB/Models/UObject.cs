@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,7 +9,7 @@ using System.Windows.Input;
 namespace UniversityDB.Models
 {
     [Table("Objects")]
-    public class UObject : INotifyPropertyChanged
+    public class UObject : INotifyPropertyChanged, ICloneable
     {
         private string name;
 
@@ -56,6 +57,18 @@ namespace UniversityDB.Models
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
+
+        public void CopyPropertiesTo(UObject another)
+        {
+            another.Name = Name;
+            another.ParentId = ParentId;
+            another.ClassId = ClassId;
         }
     }
 }

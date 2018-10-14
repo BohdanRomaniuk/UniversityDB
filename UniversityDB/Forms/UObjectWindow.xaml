@@ -21,7 +21,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="Ідентифікатор:"/>
-            <TextBox Text="{Binding Current.Id}" IsReadOnly="{Binding IsReadOnly}" Margin="3" Grid.Column="1" />
+            <TextBox Text="{Binding Current.Id}" IsReadOnly="True" Margin="3" Grid.Column="1" />
             <Label Content="Назва:" Grid.Row="1"/>
             <TextBox Text="{Binding Current.Name, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly}" Grid.Row="1" Grid.Column="1" Margin="3"/>
             <Label Content="Клас:" Grid.Row="2"/>

@@ -63,6 +63,7 @@ namespace UniversityDB.ViewModels.Forms
             if (Type == FormType.Add)
             {
                 Parent = elem;
+                //Element to Add
                 Current = new UObject()
                 {
                     Parent = elem,
@@ -71,12 +72,17 @@ namespace UniversityDB.ViewModels.Forms
                     ClassId = elem.ClassId
                 };
             }
-            else
+            else if(Type == FormType.View)
             {
                 Current = elem;
             }
+            else if(Type == FormType.Edit)
+            {
+                Current = elem;
+                //Copy of current
+                Parent = (UObject)elem.Clone();
+            }
             IsReadOnly = (Type == FormType.View) ? true : false;
-
             SaveCommand = new Command(Save);
             CancelCommand = new Command(Cancel);
         }
@@ -85,26 +91,47 @@ namespace UniversityDB.ViewModels.Forms
         {
             if (Type == FormType.Add)
             {
+                //Saving to DB
                 Current.Class = null;
                 Current.Parent = null;
                 db.Objects.Add(Current);
                 db.SaveChanges();
+
+                //Selecting From DB
                 if (Parent.Childrens == null)
                 {
                     Parent.Childrens = new ObservableCollection<UObject>();
                 }
                 UObject objectFromDb = db.Objects.Where(o => o.Name == Current.Name && o.ParentId == Parent.Id)
-                                           .Include(o=>o.Class)
-                                           .Include(o=>o.Parent)
-                                           .SingleOrDefault();
+                                                 .Include(o=>o.Class)
+                                                 .Include(o=>o.Parent)
+                                                 .SingleOrDefault();
                 Parent.Childrens.Add(objectFromDb);
             }
-            Cancel(parameter);
+            else if(Type == FormType.Edit)
+            {
+                UObject objectFromDb = db.Objects.Where(o => o.Id == Current.Id).SingleOrDefault();
+                Current.CopyPropertiesTo(objectFromDb);
+                db.SaveChanges();
+            }
+            CloseWindow((Window)parameter);
         }
 
         private void Cancel(object parameter)
         {
-            Window currentWindow = (Window)parameter;
+            //Update name if it was changed but not saved to Db
+            if(Type == FormType.Edit)
+            {
+                Current.Name = db.Objects.Where(o => o.Id == Current.Id)
+                                .Include(o => o.Parent)
+                                .Include(o => o.Class)
+                                .SingleOrDefault().Name;
+            }
+            CloseWindow((Window)parameter);
+        }
+
+        private void CloseWindow(Window currentWindow)
+        {
             if (currentWindow != null)
             {
                 currentWindow.Close();
