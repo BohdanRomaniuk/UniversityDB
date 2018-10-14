@@ -38,6 +38,8 @@ namespace UniversityDB.ViewModels
         public ICommand EditCommand { get; }
         public ICommand DeleteCommand { get; }
 
+        private UniversityContext db;
+
         public MainViewModel()
         {
             ExpandCommand = new Command(Expand);
@@ -45,6 +47,7 @@ namespace UniversityDB.ViewModels
             ViewCommand = new Command(View);
             EditCommand = new Command(Edit);
             DeleteCommand = new Command(Delete);
+            db = new UniversityContext();
             //using (var db = new UniversityContext())
             //{
             //    db.Classes.Add(new SClass("UObject", "UObjectWindow"));
@@ -91,7 +94,6 @@ namespace UniversityDB.ViewModels
             {
                 var children = new ObservableCollection<UObject>(db.Objects.Where(o => o.ParentId == parent.Id)
                     .Include(o => o.Class)
-                    .Include(o => o.Parent)
                     .ToList());
                 if (parent != null)
                 {
@@ -100,6 +102,7 @@ namespace UniversityDB.ViewModels
                     {
                         if (!parent.Childrens.Any(c => c.Id == child.Id))
                         {
+                            child.Parent = parent;
                             parent.Childrens.Add(child);
                             child.Childrens = new ObservableCollection<UObject> { loadingObject };
                         }
@@ -161,15 +164,38 @@ namespace UniversityDB.ViewModels
 
         private void Delete(object parameter)
         {
-            var elem = parameter as UObject;
-            if (MessageBox.Show($"Ви впевнені що хочете видалити \"{elem.Name}\"?\nВидалення призведе до знищення всіх похідних обєктів!", "Підтвердження",
+            UObject current = parameter as UObject;
+            if (MessageBox.Show($"Ви впевнені що хочете видалити \"{current.Name}\"?\nВидалення призведе до знищення всіх похідних обєктів!",
+                    "Підтвердження",
                     MessageBoxButton.OK,
                     MessageBoxImage.Question) == MessageBoxResult.OK)
             {
-                //not working before merging Romans PR
-                var parent = new UObject();// parameter.Parent;
-                parent.Childrens.Remove(elem);
+                RecursiveDeleteFromDb(current.Id);
+                db.Objects.Remove(db.Objects.Where(o => o.Id == current.Id).SingleOrDefault());
+                db.SaveChanges();
+                RecursiveDeleteFromUI(current);
+                current.Parent.Childrens.Remove(current);
             }
+        }
+
+        private void RecursiveDeleteFromUI(UObject root)
+        {
+            for(int i = root.Childrens.Count-1; i>=0; --i)
+            {
+                RecursiveDeleteFromUI(root.Childrens[i]);
+                root.Childrens.Remove(root.Childrens[i]);
+            }
+        }
+
+        private void RecursiveDeleteFromDb(int rootId)
+        {
+            UObject root = db.Objects.Where(o => o.Id == rootId).Include(o => o.Childrens).SingleOrDefault();
+            for (int i = root.Childrens.Count - 1; i >= 0; --i)
+            {
+                RecursiveDeleteFromDb(root.Childrens[i].Id);
+                db.Objects.Remove(root.Childrens[i]);
+            }
+            db.SaveChanges();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
