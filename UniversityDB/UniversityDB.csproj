@@ -64,6 +64,9 @@
     <Compile Include="Forms\UObjectWindow.xaml.cs">
       <DependentUpon>UObjectWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UPersonWindow.xaml.cs">
+      <DependentUpon>UPersonWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\Behaviours.cs" />
     <Compile Include="Infrastructure\Command.cs" />
     <Compile Include="Infrastructure\Enums\FormType.cs" />
@@ -90,6 +93,10 @@
     <Compile Include="ViewModels\Forms\UObjectViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Page Include="Forms\UObjectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UPersonWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

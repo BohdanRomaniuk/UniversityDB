@@ -48,16 +48,27 @@ namespace UniversityDB.ViewModels
             EditCommand = new Command(Edit);
             DeleteCommand = new Command(Delete);
             db = new UniversityContext();
+
             //using (var db = new UniversityContext())
             //{
             //    db.Classes.Add(new SClass("UObject", "UObjectWindow"));
+            //    db.Classes.Add(new SClass("UPerson", "UPersonWindow"));
             //    db.SaveChanges();
 
             //    UObject fpmi = new UObject("ФПМІ", 1);
             //    fpmi.Childrens = new ObservableCollection<UObject>();
             //    fpmi.Childrens.Add(new UObject("Деканат", 1)
             //    {
-            //        Childrens = new ObservableCollection<UObject>() { new UObject("Декан", 1) }
+            //        Childrens = new ObservableCollection<UObject>()
+            //        {
+            //            new UObject("Декан", 1)
+            //            {
+            //                Childrens = new ObservableCollection<UObject>()
+            //                {
+            //                    new UPerson("Дияк І.І.", Convert.ToDateTime("1987-09-05"),"Любінська 10, кв 4",2)
+            //                }
+            //            }
+            //        }
             //    }
             //    );
             //    fpmi.Childrens.Add(new UObject("КІС", 1));
@@ -67,6 +78,7 @@ namespace UniversityDB.ViewModels
             //    db.Objects.Add(fpmi);
             //    db.SaveChanges();
             //}
+
             using (var db = new UniversityContext())
             {
                 Faculties = new ObservableCollection<UObject>();
