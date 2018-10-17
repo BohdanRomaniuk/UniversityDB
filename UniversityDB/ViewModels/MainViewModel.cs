@@ -167,7 +167,10 @@ namespace UniversityDB.ViewModels
 
         private void Add(object parameter)
         {
-            string className = (string)parameter;
+            object[] parameters = (object[])parameter;
+            UObject uObject = (UObject)parameters[0];
+            string className = ((AddOption)parameters[1]).Name;
+
             string formName = "UObjectWindow";
             using (UniversityContext db = new UniversityContext())
             {
@@ -178,7 +181,7 @@ namespace UniversityDB.ViewModels
                 }
             }
             Type formType = Assembly.GetExecutingAssembly().GetType($"UniversityDB.Forms.{formName}");
-            Window form = (Window)Activator.CreateInstance(formType, new object[2] { parameter as UObject, FormType.Add });
+            Window form = (Window)Activator.CreateInstance(formType, new object[3] { uObject, FormType.Add, className });
             form.Show();
         }
 

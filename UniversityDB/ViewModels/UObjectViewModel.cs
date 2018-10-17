@@ -1,7 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
@@ -9,7 +11,7 @@ using UniversityDB.Infrastructure;
 using UniversityDB.Infrastructure.Enums;
 using UniversityDB.Models;
 
-namespace UniversityDB.ViewModels.Forms
+namespace UniversityDB.ViewModels
 {
     public class UObjectViewModel : INotifyPropertyChanged
     {
@@ -56,26 +58,35 @@ namespace UniversityDB.ViewModels.Forms
             CancelCommand = new Command(Cancel);
         }
 
+        //View and Edit
         public UObjectViewModel(UObject elem, FormType type)
         {
             db = new UniversityContext();
             Type = type;
-            if (Type == FormType.Add)
-            {
-                Parent = elem;
-                Current = new UObject()
-                {
-                    Parent = elem,
-                    ParentId = elem.Id,
-                    Class = elem.Class,
-                    ClassId = elem.ClassId
-                };
-            }
-            else
-            {
-                Current = elem;
-            }
+            Current = elem;
+
             IsReadOnly = (Type == FormType.View) ? true : false;
+
+            SaveCommand = new Command(Save);
+            CancelCommand = new Command(Cancel);
+        }
+
+        //Adding
+        public UObjectViewModel(UObject elem, FormType type, string elemName)
+        {
+            db = new UniversityContext();
+            Type = type;
+            Parent = elem;
+
+            Type objectType = Assembly.GetExecutingAssembly().GetType($"UniversityDB.Models.{elemName}");
+            Current = (UObject)Activator.CreateInstance(objectType);
+            Current.Parent = elem;
+            Current.ParentId = elem.Id;
+            SClass classInfo = db.Classes.Where(c => c.Name == elemName).SingleOrDefault();
+            Current.Class = classInfo;
+            Current.ClassId = classInfo.Id;
+            IsReadOnly = (Type == FormType.View) ? true : false;
+
             SaveCommand = new Command(Save);
             CancelCommand = new Command(Cancel);
         }

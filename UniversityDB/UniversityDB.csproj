@@ -61,6 +61,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\YourConverter.cs" />
     <Compile Include="Forms\UObjectWindow.xaml.cs">
       <DependentUpon>UObjectWindow.xaml</DependentUpon>
     </Compile>
