@@ -84,6 +84,7 @@
       <DependentUpon>201810131717597_ClassesFKRequired.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AddOption.cs" />
     <Compile Include="Models\SClass.cs" />
     <Compile Include="Models\UMaterials.cs" />
     <Compile Include="Models\UObject.cs" />

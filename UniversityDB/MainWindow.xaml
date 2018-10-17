@@ -19,13 +19,20 @@
                 <HierarchicalDataTemplate DataType="{x:Type model:UObject}" ItemsSource="{Binding Path=Childrens, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <TextBlock Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <TextBlock.ContextMenu>
-                            <ContextMenu>
+                            <ContextMenu x:Name="singleItem">
                                 <MenuItem Header="Переглянути"
                                           CommandParameter="{Binding}"
                                           Command="{Binding DataContext.ViewCommand, Source={x:Reference treeView}}"/>
-                                <MenuItem  Header="Додати"
-                                           CommandParameter="{Binding}"
-                                           Command="{Binding DataContext.AddCommand, Source={x:Reference treeView}}"/>
+                                <MenuItem  Header="Додати" 
+                                           ItemsSource="{Binding DataContext.Options, Source={x:Reference treeView}}">
+                                    <MenuItem.ItemContainerStyle>
+                                        <Style TargetType="{x:Type MenuItem}">
+                                            <Setter Property="Header" Value="{Binding Name}"/>
+                                            <Setter Property="Command" Value="{Binding DataContext.AddCommand, Source={x:Reference treeView}}"/>
+                                            <Setter Property="CommandParameter" Value="{Binding}"/>
+                                        </Style>
+                                    </MenuItem.ItemContainerStyle>
+                                </MenuItem>
                                 <MenuItem  Header="Редагувати"
                                            CommandParameter="{Binding}"
                                            Command="{Binding DataContext.EditCommand, Source={x:Reference treeView}}"/>

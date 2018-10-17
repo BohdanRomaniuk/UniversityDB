@@ -32,6 +32,8 @@ namespace UniversityDB.ViewModels
             }
         }
 
+        public ObservableCollection<AddOption> Options { get; set; }
+
         public ICommand ExpandCommand { get; set; }
         public ICommand AddCommand { get; }
         public ICommand ViewCommand { get; }
@@ -48,6 +50,12 @@ namespace UniversityDB.ViewModels
             EditCommand = new Command(Edit);
             DeleteCommand = new Command(Delete);
             db = new UniversityContext();
+
+            Options = new ObservableCollection<AddOption>()
+            {
+                new AddOption() {Name = "UObject"},
+                new AddOption() {Name = "UPerson"}
+            };
 
             //using (var db = new UniversityContext())
             //{
@@ -159,7 +167,7 @@ namespace UniversityDB.ViewModels
 
         private void Add(object parameter)
         {
-            string className = parameter.GetType().Name;
+            string className = (string)parameter;
             string formName = "UObjectWindow";
             using (UniversityContext db = new UniversityContext())
             {
