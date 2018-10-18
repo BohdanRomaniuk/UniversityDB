@@ -89,7 +89,6 @@
       <DependentUpon>201810181037437_ClassesRules.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AddOption.cs" />
     <Compile Include="Models\SClass.cs" />
     <Compile Include="Models\SClassRules.cs" />
     <Compile Include="Models\UMaterials.cs" />

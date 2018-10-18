@@ -32,8 +32,6 @@ namespace UniversityDB.ViewModels
             }
         }
 
-        public ObservableCollection<AddOption> Options { get; set; }
-
         public ICommand ExpandCommand { get; set; }
         public ICommand AddCommand { get; }
         public ICommand ViewCommand { get; }
@@ -51,31 +49,23 @@ namespace UniversityDB.ViewModels
             DeleteCommand = new Command(Delete);
             db = new UniversityContext();
 
-            Options = new ObservableCollection<AddOption>()
-            {
-                new AddOption() {Name = "UObject"},
-                new AddOption() {Name = "UPerson"}
-            };
+            //db.Classes.Add(new SClass("UObject", "UObjectWindow"));
+            //db.Classes.Add(new SClass("UPerson", "UPersonWindow"));
+            //db.Classes.Add(new SClass("UStudyingPerson", "UStudyingPersonWindow"));
+            //db.Classes.Add(new SClass("UWorkingPerson", "UWorkingPersonWindow"));
+            //db.SaveChanges();
 
-            //using (var db = new UniversityContext())
+            //db.ClassesRules.Add(new SClassRules() { ClassId = 1, ClassIdInside = 1 });
+            //db.ClassesRules.Add(new SClassRules() { ClassId = 1, ClassIdInside = 2 });
+            //db.ClassesRules.Add(new SClassRules() { ClassId = 2, ClassIdInside = 3 });
+            //db.ClassesRules.Add(new SClassRules() { ClassId = 2, ClassIdInside = 4 });
+            //db.SaveChanges();
+
+            //UObject fpmi = new UObject("ФПМІ", 1);
+            //fpmi.Childrens = new ObservableCollection<UObject>();
+            //fpmi.Childrens.Add(new UObject("Деканат", 1)
             //{
-            //    db.Classes.Add(new SClass("UObject", "UObjectWindow"));
-            //    db.Classes.Add(new SClass("UPerson", "UPersonWindow"));
-            //    db.Classes.Add(new SClass("UStudyingPerson", "UStudyingPersonWindow"));
-            //    db.Classes.Add(new SClass("UWorkingPerson", "UWorkingPersonWindow"));
-            //    db.SaveChanges();
-
-            //    db.ClassesRules.Add(new SClassRules() { ClassId = 1, ClassIdInside = 1 });
-            //    db.ClassesRules.Add(new SClassRules() { ClassId = 1, ClassIdInside = 2 });
-            //    db.ClassesRules.Add(new SClassRules() { ClassId = 2, ClassIdInside = 3 });
-            //    db.ClassesRules.Add(new SClassRules() { ClassId = 2, ClassIdInside = 4 });
-            //    db.SaveChanges();
-
-            //    UObject fpmi = new UObject("ФПМІ", 1);
-            //    fpmi.Childrens = new ObservableCollection<UObject>();
-            //    fpmi.Childrens.Add(new UObject("Деканат", 1)
-            //    {
-            //        Childrens = new ObservableCollection<UObject>()
+            //    Childrens = new ObservableCollection<UObject>()
             //        {
             //            new UObject("Декан", 1)
             //            {
@@ -85,29 +75,25 @@ namespace UniversityDB.ViewModels
             //                }
             //            }
             //        }
-            //    }
-            //    );
-            //    fpmi.Childrens.Add(new UObject("КІС", 1));
-            //    fpmi.Childrens.Add(new UObject("КДАІС", 1));
-            //    fpmi.Childrens.Add(new UObject("КП", 1));
-            //    fpmi.Childrens.Add(new UObject("КПМ", 1));
-            //    db.Objects.Add(fpmi);
-            //    db.SaveChanges();
             //}
+            //);
+            //fpmi.Childrens.Add(new UObject("КІС", 1));
+            //fpmi.Childrens.Add(new UObject("КДАІС", 1));
+            //fpmi.Childrens.Add(new UObject("КП", 1));
+            //fpmi.Childrens.Add(new UObject("КПМ", 1));
+            //db.Objects.Add(fpmi);
+            //db.SaveChanges();
 
-            using (var db = new UniversityContext())
+            Faculties = new ObservableCollection<UObject>();
+            UObject root = db.Objects.Where(o => o.ParentId == null)
+                .Include(o => o.Class)
+                .Include(o => o.Class.AllowedChildrens.Select(y => y.ClassInside))
+                .FirstOrDefault();
+            root.Parent = new UObject("Немає", 1);
+            if (root != null)
             {
-                Faculties = new ObservableCollection<UObject>();
-                UObject root = db.Objects.Where(o => o.ParentId == null)
-                    .Include(o=>o.Class)
-                    .Include(o=>o.Class.AllowedChildrens.Select(y=>y.ClassInside))
-                    .FirstOrDefault();
-                root.Parent = new UObject("Немає", 1);
-                if (root != null)
-                {
-                    Faculties.Add(root);
-                    root.Childrens = new ObservableCollection<UObject> { loadingObject };
-                }
+                Faculties.Add(root);
+                root.Childrens = new ObservableCollection<UObject> { loadingObject };
             }
         }
 
@@ -119,23 +105,20 @@ namespace UniversityDB.ViewModels
 
         private void AppendChildrenByParent(UObject parent)
         {
-            using (var db = new UniversityContext())
+            var children = new ObservableCollection<UObject>(db.Objects.Where(o => o.ParentId == parent.Id)
+                .Include(o => o.Class)
+                .Include(o => o.Class.AllowedChildrens.Select(y => y.ClassInside))
+                .ToList());
+            if (parent != null)
             {
-                var children = new ObservableCollection<UObject>(db.Objects.Where(o => o.ParentId == parent.Id)
-                    .Include(o => o.Class)
-                    .Include(o => o.Class.AllowedChildrens.Select(y => y.ClassInside))
-                    .ToList());
-                if (parent != null)
+                parent.Childrens.Remove(loadingObject);
+                foreach (var child in children)
                 {
-                    parent.Childrens.Remove(loadingObject);
-                    foreach (var child in children)
+                    if (!parent.Childrens.Any(c => c.Id == child.Id))
                     {
-                        if (!parent.Childrens.Any(c => c.Id == child.Id))
-                        {
-                            child.Parent = parent;
-                            parent.Childrens.Add(child);
-                            child.Childrens = new ObservableCollection<UObject> { loadingObject };
-                        }
+                        child.Parent = parent;
+                        parent.Childrens.Add(child);
+                        child.Childrens = new ObservableCollection<UObject> { loadingObject };
                     }
                 }
             }
@@ -145,13 +128,10 @@ namespace UniversityDB.ViewModels
         {
             string className = parameter.GetType().Name;
             string formName = "UObjectWindow";
-            using (UniversityContext db = new UniversityContext())
+            string formNameFromDb = db.Classes.Where(c => c.Name == className).SingleOrDefault().FormName;
+            if (formNameFromDb != null)
             {
-                string formNameFromDb = db.Classes.Where(c => c.Name == className).SingleOrDefault().FormName;
-                if(formNameFromDb != null)
-                {
-                    formName = formNameFromDb;
-                }
+                formName = formNameFromDb;
             }
             Type formType = Assembly.GetExecutingAssembly().GetType($"UniversityDB.Forms.{formName}");
             Window form = (Window)Activator.CreateInstance(formType, new object[2] { parameter as UObject, FormType.View });
@@ -162,13 +142,10 @@ namespace UniversityDB.ViewModels
         {
             string className = parameter.GetType().Name;
             string formName = "UObjectWindow";
-            using (UniversityContext db = new UniversityContext())
+            string formNameFromDb = db.Classes.Where(c => c.Name == className).SingleOrDefault().FormName;
+            if (formNameFromDb != null)
             {
-                string formNameFromDb = db.Classes.Where(c => c.Name == className).SingleOrDefault().FormName;
-                if (formNameFromDb != null)
-                {
-                    formName = formNameFromDb;
-                }
+                formName = formNameFromDb;
             }
             Type formType = Assembly.GetExecutingAssembly().GetType($"UniversityDB.Forms.{formName}");
             Window form = (Window)Activator.CreateInstance(formType, new object[2] { parameter as UObject, FormType.Edit });
@@ -180,15 +157,11 @@ namespace UniversityDB.ViewModels
             object[] parameters = (object[])parameter;
             UObject uObject = (UObject)parameters[0];
             string className = (string)parameters[1];
-
             string formName = "UObjectWindow";
-            using (UniversityContext db = new UniversityContext())
+            string formNameFromDb = db.Classes.Where(c => c.Name == className).SingleOrDefault().FormName;
+            if (formNameFromDb != null)
             {
-                string formNameFromDb = db.Classes.Where(c => c.Name == className).SingleOrDefault().FormName;
-                if (formNameFromDb != null)
-                {
-                    formName = formNameFromDb;
-                }
+                formName = formNameFromDb;
             }
             Type formType = Assembly.GetExecutingAssembly().GetType($"UniversityDB.Forms.{formName}");
             Window form = (Window)Activator.CreateInstance(formType, new object[3] { uObject, FormType.Add, className });
