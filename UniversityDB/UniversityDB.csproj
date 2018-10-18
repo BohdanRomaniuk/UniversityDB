@@ -68,11 +68,11 @@
     <Compile Include="Forms\UPersonWindow.xaml.cs">
       <DependentUpon>UPersonWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Forms\UStudyingPerson.xaml.cs">
-      <DependentUpon>UStudyingPerson.xaml</DependentUpon>
+    <Compile Include="Forms\UStudyingPersonWindow.xaml.cs">
+      <DependentUpon>UStudyingPersonWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Forms\UWorkingPerson.xaml.cs">
-      <DependentUpon>UWorkingPerson.xaml</DependentUpon>
+    <Compile Include="Forms\UWorkingPersonWindow.xaml.cs">
+      <DependentUpon>UWorkingPersonWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Behaviours.cs" />
     <Compile Include="Infrastructure\Command.cs" />
@@ -112,11 +112,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Forms\UStudyingPerson.xaml">
+    <Page Include="Forms\UStudyingPersonWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Forms\UWorkingPerson.xaml">
+    <Page Include="Forms\UWorkingPersonWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

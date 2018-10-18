@@ -1,26 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using UniversityDB.Infrastructure.Enums;
+using UniversityDB.Models;
+using UniversityDB.ViewModels;
 
 namespace UniversityDB.Forms
 {
-    /// <summary>
-    /// Interaction logic for UWorkingPerson.xaml
-    /// </summary>
-    public partial class UWorkingPerson : Window
+    public partial class UWorkingPersonWindow : Window
     {
-        public UWorkingPerson()
+        //View and Edit
+        public UWorkingPersonWindow(UObject elem, FormType type)
         {
+            DataContext = new UObjectViewModel(elem, type);
+            InitializeComponent();
+        }
+
+        //Adding
+        public UWorkingPersonWindow(UObject elem, FormType type, string className)
+        {
+            DataContext = new UObjectViewModel(elem, type, className);
             InitializeComponent();
         }
     }
