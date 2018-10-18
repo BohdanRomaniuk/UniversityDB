@@ -85,6 +85,7 @@ namespace UniversityDB.ViewModels
             //db.SaveChanges();
 
             Faculties = new ObservableCollection<UObject>();
+
             UObject root = db.Objects.Where(o => o.ParentId == null)
                 .Include(o => o.Class)
                 .Include(o => o.Class.AllowedChildrens.Select(y => y.ClassInside))
@@ -105,20 +106,23 @@ namespace UniversityDB.ViewModels
 
         private void AppendChildrenByParent(UObject parent)
         {
-            var children = new ObservableCollection<UObject>(db.Objects.Where(o => o.ParentId == parent.Id)
-                .Include(o => o.Class)
-                .Include(o => o.Class.AllowedChildrens.Select(y => y.ClassInside))
-                .ToList());
-            if (parent != null)
+            using (UniversityContext db = new UniversityContext())
             {
-                parent.Childrens.Remove(loadingObject);
-                foreach (var child in children)
+                var children = new ObservableCollection<UObject>(db.Objects.Where(o => o.ParentId == parent.Id)
+                    .Include(o => o.Class)
+                    .Include(o => o.Class.AllowedChildrens.Select(y => y.ClassInside))
+                    .ToList());
+                if (parent != null)
                 {
-                    if (!parent.Childrens.Any(c => c.Id == child.Id))
+                    parent.Childrens.Remove(loadingObject);
+                    foreach (var child in children)
                     {
-                        child.Parent = parent;
-                        parent.Childrens.Add(child);
-                        child.Childrens = new ObservableCollection<UObject> { loadingObject };
+                        if (!parent.Childrens.Any(c => c.Id == child.Id))
+                        {
+                            child.Parent = parent;
+                            parent.Childrens.Add(child);
+                            child.Childrens = new ObservableCollection<UObject> {loadingObject};
+                        }
                     }
                 }
             }

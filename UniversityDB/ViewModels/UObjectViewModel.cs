@@ -129,10 +129,7 @@ namespace UniversityDB.ViewModels
             //Update name if it was changed but not saved to Db
             if (Type == FormType.Edit)
             {
-                Current.Name = db.Objects.Where(o => o.Id == Current.Id)
-                                .Include(o => o.Parent)
-                                .Include(o => o.Class)
-                                .SingleOrDefault().Name;
+                Current.Name = db.Objects.Where(o => o.Id == Current.Id).SingleOrDefault().Name;
             }
             CloseWindow((Window)parameter);
         }
