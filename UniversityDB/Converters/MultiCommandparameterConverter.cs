@@ -4,7 +4,7 @@ using System.Windows.Data;
 
 namespace UniversityDB.Converters
 {
-    public class YourConverter : IMultiValueConverter
+    public class MultiCommandparameterConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {

@@ -107,13 +107,13 @@ namespace UniversityDB.ViewModels
                     Parent.Childrens = new ObservableCollection<UObject>();
                 }
                 UObject objectFromDb = db.Objects.Where(o => o.Name == Current.Name && o.ParentId == Parent.Id)
-                                                 .Include(o=>o.Class)
+                                                 .Include(o => o.Class)
                                                  .SingleOrDefault();
                 //Fix deleting bug
                 objectFromDb.Parent = Parent;
                 Parent.Childrens.Add(objectFromDb);
             }
-            else if(Type == FormType.Edit)
+            else if (Type == FormType.Edit)
             {
                 UObject objectFromDb = db.Objects.Where(o => o.Id == Current.Id).SingleOrDefault();
                 Current.CopyPropertiesTo(objectFromDb);
@@ -125,7 +125,7 @@ namespace UniversityDB.ViewModels
         private void Cancel(object parameter)
         {
             //Update name if it was changed but not saved to Db
-            if(Type == FormType.Edit)
+            if (Type == FormType.Edit)
             {
                 Current.Name = db.Objects.Where(o => o.Id == Current.Id)
                                 .Include(o => o.Parent)
