@@ -61,6 +61,14 @@ namespace UniversityDB.ViewModels
             //{
             //    db.Classes.Add(new SClass("UObject", "UObjectWindow"));
             //    db.Classes.Add(new SClass("UPerson", "UPersonWindow"));
+            //    db.Classes.Add(new SClass("UStudyingPerson", "UStudyingPersonWindow"));
+            //    db.Classes.Add(new SClass("UWorkingPerson", "UWorkingPersonWindow"));
+            //    db.SaveChanges();
+
+            //    db.ClassesRules.Add(new SClassRules() { ClassId = 1, ClassIdInside = 1 });
+            //    db.ClassesRules.Add(new SClassRules() { ClassId = 1, ClassIdInside = 2 });
+            //    db.ClassesRules.Add(new SClassRules() { ClassId = 2, ClassIdInside = 3 });
+            //    db.ClassesRules.Add(new SClassRules() { ClassId = 2, ClassIdInside = 4 });
             //    db.SaveChanges();
 
             //    UObject fpmi = new UObject("ФПМІ", 1);
@@ -92,6 +100,7 @@ namespace UniversityDB.ViewModels
                 Faculties = new ObservableCollection<UObject>();
                 UObject root = db.Objects.Where(o => o.ParentId == null)
                     .Include(o=>o.Class)
+                    .Include(o=>o.Class.AllowedChildrens.Select(y=>y.ClassInside))
                     .FirstOrDefault();
                 root.Parent = new UObject("Немає", 1);
                 if (root != null)
@@ -114,6 +123,7 @@ namespace UniversityDB.ViewModels
             {
                 var children = new ObservableCollection<UObject>(db.Objects.Where(o => o.ParentId == parent.Id)
                     .Include(o => o.Class)
+                    .Include(o => o.Class.AllowedChildrens.Select(y => y.ClassInside))
                     .ToList());
                 if (parent != null)
                 {
@@ -169,7 +179,7 @@ namespace UniversityDB.ViewModels
         {
             object[] parameters = (object[])parameter;
             UObject uObject = (UObject)parameters[0];
-            string className = ((AddOption)parameters[1]).Name;
+            string className = (string)parameters[1];
 
             string formName = "UObjectWindow";
             using (UniversityContext db = new UniversityContext())

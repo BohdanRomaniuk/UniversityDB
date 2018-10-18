@@ -28,10 +28,10 @@
                                           Command="{Binding DataContext.ViewCommand, Source={x:Reference treeView}}"
                                           CommandParameter="{Binding}"/>
                                 <MenuItem Header="Додати"
-                                          ItemsSource="{Binding DataContext.Options, Source={x:Reference treeView}}">
+                                          ItemsSource="{Binding Class.AllowedChildrens}">
                                     <MenuItem.ItemContainerStyle>
                                         <Style TargetType="{x:Type MenuItem}">
-                                            <Setter Property="Header" Value="{Binding Name}"/>
+                                            <Setter Property="Header" Value="{Binding ClassInside.Name}"/>
                                             <Setter Property="Command" Value="{Binding DataContext.AddCommand, Source={x:Reference treeView}}"/>
                                             <!--<Setter Property="CommandParameter"
                                                     Value="{Binding 
@@ -47,7 +47,7 @@
                                                                                                  AncestorType={x:Type ContextMenu}}"
                                                                  Path="DataContext" />
                                                         <!--AddOption with Name of object to add-->
-                                                        <Binding />
+                                                        <Binding Path="ClassInside.Name"/>
                                                     </MultiBinding>
                                                 </Setter.Value>
                                             </Setter>
