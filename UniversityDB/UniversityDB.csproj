@@ -92,7 +92,7 @@
     <Compile Include="Models\UPerson.cs" />
     <Compile Include="Models\UStudyingPerson.cs" />
     <Compile Include="Models\UWorkingPerson.cs" />
-    <Compile Include="ViewModels\Forms\UObjectViewModel.cs" />
+    <Compile Include="ViewModels\UObjectViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Page Include="Forms\UObjectWindow.xaml">
       <SubType>Designer</SubType>

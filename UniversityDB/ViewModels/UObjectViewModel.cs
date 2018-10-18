@@ -106,12 +106,10 @@ namespace UniversityDB.ViewModels
                 {
                     Parent.Childrens = new ObservableCollection<UObject>();
                 }
-                UObject objectFromDb = db.Objects.Where(o => o.Name == Current.Name && o.ParentId == Parent.Id)
-                                                 .Include(o => o.Class)
-                                                 .SingleOrDefault();
+
                 //Fix deleting bug
-                objectFromDb.Parent = Parent;
-                Parent.Childrens.Add(objectFromDb);
+                Current.Parent = Parent;
+                Parent.Childrens.Add(Current);
             }
             else if (Type == FormType.Edit)
             {
