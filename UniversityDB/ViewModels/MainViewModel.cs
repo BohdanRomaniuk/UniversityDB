@@ -89,12 +89,16 @@ namespace UniversityDB.ViewModels
             UObject root = db.Objects.Where(o => o.ParentId == null)
                 .Include(o => o.Class)
                 .Include(o => o.Class.AllowedChildrens.Select(y => y.ClassInside))
+                .Include(o => o.Childrens)
                 .FirstOrDefault();
             root.Parent = new UObject("Немає", 1);
             if (root != null)
             {
                 Faculties.Add(root);
-                root.Childrens = new ObservableCollection<UObject> { loadingObject };
+                if (root.Childrens.Any())
+                {
+                    root.Childrens = new ObservableCollection<UObject> { loadingObject };
+                }
             }
         }
 
@@ -111,6 +115,7 @@ namespace UniversityDB.ViewModels
                 var children = new ObservableCollection<UObject>(db.Objects.Where(o => o.ParentId == parent.Id)
                     .Include(o => o.Class)
                     .Include(o => o.Class.AllowedChildrens.Select(y => y.ClassInside))
+                    .Include(o => o.Childrens)
                     .ToList());
                 if (parent != null)
                 {
@@ -121,7 +126,10 @@ namespace UniversityDB.ViewModels
                         {
                             child.Parent = parent;
                             parent.Childrens.Add(child);
-                            child.Childrens = new ObservableCollection<UObject> {loadingObject};
+                            if (child.Childrens.Any())
+                            {
+                                child.Childrens = new ObservableCollection<UObject> { loadingObject };
+                            }
                         }
                     }
                 }
