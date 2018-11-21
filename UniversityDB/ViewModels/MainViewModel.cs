@@ -33,20 +33,12 @@ namespace UniversityDB.ViewModels
         }
 
         public ICommand ExpandCommand { get; set; }
-        public ICommand AddCommand { get; }
-        public ICommand ViewCommand { get; }
-        public ICommand EditCommand { get; }
-        public ICommand DeleteCommand { get; }
 
         private UniversityContext db;
 
         public MainViewModel()
         {
             ExpandCommand = new Command(Expand);
-            AddCommand = new Command(Add);
-            ViewCommand = new Command(View);
-            EditCommand = new Command(Edit);
-            DeleteCommand = new Command(Delete);
             db = new UniversityContext();
 
             //db.Classes.Add(new SClass("UObject", "UObjectWindow"));
@@ -134,86 +126,6 @@ namespace UniversityDB.ViewModels
                     }
                 }
             }
-        }
-
-        private void View(object parameter)
-        {
-            string className = parameter.GetType().Name;
-            string formName = "UObjectWindow";
-            string formNameFromDb = db.Classes.Where(c => c.Name == className).SingleOrDefault().FormName;
-            if (formNameFromDb != null)
-            {
-                formName = formNameFromDb;
-            }
-            Type formType = Assembly.GetExecutingAssembly().GetType($"UniversityDB.Forms.{formName}");
-            Window form = (Window)Activator.CreateInstance(formType, new object[2] { parameter as UObject, FormType.View });
-            form.Show();
-        }
-
-        private void Edit(object parameter)
-        {
-            string className = parameter.GetType().Name;
-            string formName = "UObjectWindow";
-            string formNameFromDb = db.Classes.Where(c => c.Name == className).SingleOrDefault().FormName;
-            if (formNameFromDb != null)
-            {
-                formName = formNameFromDb;
-            }
-            Type formType = Assembly.GetExecutingAssembly().GetType($"UniversityDB.Forms.{formName}");
-            Window form = (Window)Activator.CreateInstance(formType, new object[2] { parameter as UObject, FormType.Edit });
-            form.Show();
-        }
-
-        private void Add(object parameter)
-        {
-            object[] parameters = (object[])parameter;
-            UObject uObject = (UObject)parameters[0];
-            string className = (string)parameters[1];
-            string formName = "UObjectWindow";
-            string formNameFromDb = db.Classes.Where(c => c.Name == className).SingleOrDefault().FormName;
-            if (formNameFromDb != null)
-            {
-                formName = formNameFromDb;
-            }
-            Type formType = Assembly.GetExecutingAssembly().GetType($"UniversityDB.Forms.{formName}");
-            Window form = (Window)Activator.CreateInstance(formType, new object[3] { uObject, FormType.Add, className });
-            form.Show();
-        }
-
-        private void Delete(object parameter)
-        {
-            UObject current = parameter as UObject;
-            if (MessageBox.Show($"Ви впевнені що хочете видалити \"{current.Name}\"?\nВидалення призведе до знищення всіх похідних обєктів!",
-                    "Підтвердження",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Question) == MessageBoxResult.OK)
-            {
-                RecursiveDeleteFromDb(current.Id);
-                db.Objects.Remove(db.Objects.Where(o => o.Id == current.Id).SingleOrDefault());
-                db.SaveChanges();
-                RecursiveDeleteFromUI(current);
-                current.Parent.Childrens.Remove(current);
-            }
-        }
-
-        private void RecursiveDeleteFromUI(UObject root)
-        {
-            for(int i = root.Childrens.Count-1; i>=0; --i)
-            {
-                RecursiveDeleteFromUI(root.Childrens[i]);
-                root.Childrens.Remove(root.Childrens[i]);
-            }
-        }
-
-        private void RecursiveDeleteFromDb(int rootId)
-        {
-            UObject root = db.Objects.Where(o => o.Id == rootId).Include(o => o.Childrens).SingleOrDefault();
-            for (int i = root.Childrens.Count - 1; i >= 0; --i)
-            {
-                RecursiveDeleteFromDb(root.Childrens[i].Id);
-                db.Objects.Remove(root.Childrens[i]);
-            }
-            db.SaveChanges();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
