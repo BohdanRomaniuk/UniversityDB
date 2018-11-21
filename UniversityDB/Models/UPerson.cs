@@ -33,5 +33,12 @@ namespace UniversityDB.Models
             Birthday = _birthday;
             Address = _address;
         }
+
+        public override void CopyPropertiesTo(UObject another)
+        {
+            base.CopyPropertiesTo(another);
+            (another as UPerson).Birthday = Birthday;
+            (another as UPerson).Address = Address;
+        }
     }
 }

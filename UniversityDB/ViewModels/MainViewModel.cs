@@ -6,10 +6,7 @@ using UniversityDB.Models;
 using System.Windows.Input;
 using System.Windows;
 using System.Collections.ObjectModel;
-using UniversityDB.Infrastructure.Enums;
-using System.Reflection;
 using System.Windows.Controls;
-using System;
 using System.Data.Entity;
 
 namespace UniversityDB.ViewModels
@@ -41,23 +38,23 @@ namespace UniversityDB.ViewModels
             ExpandCommand = new Command(Expand);
             db = new UniversityContext();
 
-            //db.Classes.Add(new SClass("UObject", "UObjectWindow"));
-            //db.Classes.Add(new SClass("UPerson", "UPersonWindow"));
-            //db.Classes.Add(new SClass("UStudyingPerson", "UStudyingPersonWindow"));
-            //db.Classes.Add(new SClass("UWorkingPerson", "UWorkingPersonWindow"));
-            //db.SaveChanges();
-
-            //db.ClassesRules.Add(new SClassRules() { ClassId = 1, ClassIdInside = 1 });
-            //db.ClassesRules.Add(new SClassRules() { ClassId = 1, ClassIdInside = 2 });
-            //db.ClassesRules.Add(new SClassRules() { ClassId = 2, ClassIdInside = 3 });
-            //db.ClassesRules.Add(new SClassRules() { ClassId = 2, ClassIdInside = 4 });
-            //db.SaveChanges();
-
-            //UObject fpmi = new UObject("ФПМІ", 1);
-            //fpmi.Childrens = new ObservableCollection<UObject>();
-            //fpmi.Childrens.Add(new UObject("Деканат", 1)
+            //using (var db = new UniversityContext())
             //{
-            //    Childrens = new ObservableCollection<UObject>()
+            //    db.Classes.Add(new SClass("UObject", "Об'єкт", "UObjectWindow"));
+            //    db.Classes.Add(new SClass("UPerson", "Особу", "UPersonWindow"));
+            //    db.Classes.Add(new SClass("UStudyingPerson", "Особу, яка вчиться", "UStudyingPersonWindow"));
+            //    db.Classes.Add(new SClass("UWorkingPerson", "Особу, яка працює", "UWorkingPersonWindow"));
+
+            //    db.ClassesRules.Add(new SClassRules() { ClassId = 1, ClassIdInside = 1 });
+            //    db.ClassesRules.Add(new SClassRules() { ClassId = 1, ClassIdInside = 2 });
+            //    db.ClassesRules.Add(new SClassRules() { ClassId = 2, ClassIdInside = 3 });
+            //    db.ClassesRules.Add(new SClassRules() { ClassId = 2, ClassIdInside = 4 });
+
+            //    UObject fpmi = new UObject("ФПМІ", 1);
+            //    fpmi.Childrens = new ObservableCollection<UObject>();
+            //    fpmi.Childrens.Add(new UObject("Деканат", 1)
+            //    {
+            //        Childrens = new ObservableCollection<UObject>()
             //        {
             //            new UObject("Декан", 1)
             //            {
@@ -67,14 +64,15 @@ namespace UniversityDB.ViewModels
             //                }
             //            }
             //        }
+            //    }
+            //    );
+            //    fpmi.Childrens.Add(new UObject("КІС", 1));
+            //    fpmi.Childrens.Add(new UObject("КДАІС", 1));
+            //    fpmi.Childrens.Add(new UObject("КП", 1));
+            //    fpmi.Childrens.Add(new UObject("КПМ", 1));
+            //    db.Objects.Add(fpmi);
+            //    db.SaveChanges();
             //}
-            //);
-            //fpmi.Childrens.Add(new UObject("КІС", 1));
-            //fpmi.Childrens.Add(new UObject("КДАІС", 1));
-            //fpmi.Childrens.Add(new UObject("КП", 1));
-            //fpmi.Childrens.Add(new UObject("КПМ", 1));
-            //db.Objects.Add(fpmi);
-            //db.SaveChanges();
 
             Faculties = new ObservableCollection<UObject>();
 

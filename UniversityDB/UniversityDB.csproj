@@ -94,6 +94,10 @@
     <Compile Include="Migrations\201810181037437_ClassesRules.Designer.cs">
       <DependentUpon>201810181037437_ClassesRules.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811212106552_UkrClassName.cs" />
+    <Compile Include="Migrations\201811212106552_UkrClassName.Designer.cs">
+      <DependentUpon>201811212106552_UkrClassName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SClass.cs" />
     <Compile Include="Models\SClassRules.cs" />
@@ -158,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810181037437_ClassesRules.resx">
       <DependentUpon>201810181037437_ClassesRules.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811212106552_UkrClassName.resx">
+      <DependentUpon>201811212106552_UkrClassName.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

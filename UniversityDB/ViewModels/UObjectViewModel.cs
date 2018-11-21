@@ -119,6 +119,7 @@ namespace UniversityDB.ViewModels
             {
                 UObject objectFromDb = db.Objects.Where(o => o.Id == Current.Id).SingleOrDefault();
                 Current.CopyPropertiesTo(objectFromDb);
+                objectFromDb.Class = null;
                 db.SaveChanges();
             }
             CloseWindow((Window)parameter);

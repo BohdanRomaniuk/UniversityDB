@@ -80,18 +80,23 @@ namespace UniversityDB.Models
 
         protected virtual void CreateActions()
         {
-            Actions = new ObservableCollection<ContextAction>();
-            Actions.Add(new ContextAction() { Name = "Переглянути", Action = new Command(View) });
+            Actions = new ObservableCollection<ContextAction>
+            {
+                new ContextAction() { Name = "Переглянути", Action = new Command(View) }
+            };
             if (ClassId != 0)
             {
-                Class = db.Classes.Include(o => o.AllowedChildrens.Select(y => y.ClassInside)).Where(c => c.Id == ClassId).SingleOrDefault();
-                if(Class!=null)
+                var allowedChilds = db.Classes.Include(o => o.AllowedChildrens.Select(y => y.ClassInside))
+                                              .Where(c => c.Id == ClassId)
+                                              .SingleOrDefault()
+                                              .AllowedChildrens;
+                if(allowedChilds != null)
                 {
                     Actions.Add(new ContextAction()
                     {
                         Name = "Додати",
                         Action = null,
-                        Subs = Class.AllowedChildrens.Select(e => new ContextAction() { Name = e.ClassInside.Name, Action = new Command(Add) }).ToList()
+                        Subs = allowedChilds.Select(e => new ContextAction() { Name = e.ClassInside.UkrName, Action = new Command(Add) }).ToList()
                     });
                 }
             }
@@ -135,7 +140,9 @@ namespace UniversityDB.Models
             UObject uObject = (UObject)parameter[0];
             string className = (string)parameter[1];
             string formName = "UObjectWindow";
-            string formNameFromDb = db.Classes.Where(c => c.Name == className).SingleOrDefault().FormName;
+            var classFromDb = db.Classes.Where(c => c.UkrName == className).SingleOrDefault();
+            string formNameFromDb = classFromDb.FormName;
+            className = classFromDb.Name;
             if (formNameFromDb != null)
             {
                 formName = formNameFromDb;
