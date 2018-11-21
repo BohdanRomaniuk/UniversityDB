@@ -61,8 +61,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\MultiCommandparameterConverter.cs" />
+    <Compile Include="Forms\UObjectWindow.xaml.cs">
+      <DependentUpon>UObjectWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UPersonWindow.xaml.cs">
+      <DependentUpon>UPersonWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UStudyingPersonWindow.xaml.cs">
+      <DependentUpon>UStudyingPersonWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UWorkingPersonWindow.xaml.cs">
+      <DependentUpon>UWorkingPersonWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\Behaviours.cs" />
     <Compile Include="Infrastructure\Command.cs" />
+    <Compile Include="Infrastructure\Enums\FormType.cs" />
     <Compile Include="Infrastructure\UniversityContext.cs" />
     <Compile Include="Migrations\201809272132182_Initial.cs" />
     <Compile Include="Migrations\201809272132182_Initial.Designer.cs">
@@ -72,14 +86,40 @@
     <Compile Include="Migrations\201810111308044_SelfFKNullable.Designer.cs">
       <DependentUpon>201810111308044_SelfFKNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810131717597_ClassesFKRequired.cs" />
+    <Compile Include="Migrations\201810131717597_ClassesFKRequired.Designer.cs">
+      <DependentUpon>201810131717597_ClassesFKRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810181037437_ClassesRules.cs" />
+    <Compile Include="Migrations\201810181037437_ClassesRules.Designer.cs">
+      <DependentUpon>201810181037437_ClassesRules.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SClass.cs" />
+    <Compile Include="Models\SClassRules.cs" />
     <Compile Include="Models\UMaterials.cs" />
     <Compile Include="Models\UObject.cs" />
     <Compile Include="Models\UPerson.cs" />
     <Compile Include="Models\UStudyingPerson.cs" />
     <Compile Include="Models\UWorkingPerson.cs" />
+    <Compile Include="ViewModels\UObjectViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Page Include="Forms\UObjectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UPersonWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UStudyingPersonWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UWorkingPersonWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -112,6 +152,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810111308044_SelfFKNullable.resx">
       <DependentUpon>201810111308044_SelfFKNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810131717597_ClassesFKRequired.resx">
+      <DependentUpon>201810131717597_ClassesFKRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810181037437_ClassesRules.resx">
+      <DependentUpon>201810181037437_ClassesRules.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
