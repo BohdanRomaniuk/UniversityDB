@@ -102,6 +102,9 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SClass.cs" />
     <Compile Include="Models\SClassRules.cs" />
+    <Compile Include="Models\UDepartment.cs" />
+    <Compile Include="Models\UFaculty.cs" />
+    <Compile Include="Models\UInventory.cs" />
     <Compile Include="Models\UMaterials.cs" />
     <Compile Include="Models\UObject.cs" />
     <Compile Include="Models\UPerson.cs" />
@@ -171,6 +174,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
