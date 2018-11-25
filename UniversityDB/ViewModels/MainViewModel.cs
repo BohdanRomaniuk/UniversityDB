@@ -8,10 +8,12 @@ using System.Windows;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Data.Entity;
+using GongSolutions.Wpf.DragDrop;
+using System;
 
 namespace UniversityDB.ViewModels
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : INotifyPropertyChanged, IDropTarget
     {
         private ObservableCollection<UObject> faculties;
         private UObject loadingObject = new UObject("Loading", 1);
@@ -130,6 +132,47 @@ namespace UniversityDB.ViewModels
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public void DragOver(IDropInfo dropInfo)
+        {
+            if (dropInfo.Data is UObject &&
+                    dropInfo.TargetItem is UObject)
+            {
+                dropInfo.Effects = DragDropEffects.Move;
+                dropInfo.DropTargetAdorner = DropTargetAdorners.Highlight;
+            }
+        }
+
+        public void Drop(IDropInfo dropInfo)
+        {
+            //Database update logic
+           // DO THE FUCKING CHECK
+            if ((dropInfo.TargetItem != (dropInfo.Data as UObject).Parent))
+            {
+                var dropInfoTarget = dropInfo.TargetItem as UObject;
+                var dropInfoData = dropInfo.Data as UObject;
+                //MessageBox.Show("Allowed");
+                using (UniversityContext db = new UniversityContext())
+                {
+                    // Update UI
+                    dropInfoData.Parent?.Childrens.Remove(dropInfoData);
+
+                    dropInfoTarget.Childrens.Add(dropInfoData);
+                    dropInfoData.Parent = dropInfoTarget;
+
+                    // Update DB
+                    var target = db.Objects.Where(o => o.Id == dropInfoTarget.Id).FirstOrDefault();
+                    var dragged = db.Objects.Where(o => o.Id == dropInfoData.Id).Include(o => o.Parent).FirstOrDefault();
+                    dragged?.Parent.Childrens.Remove(dragged);
+                    target?.Childrens.Add(dragged);
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Об'єкт не може містити синівських елементів такого типу");
+            }
         }
     }
 }
