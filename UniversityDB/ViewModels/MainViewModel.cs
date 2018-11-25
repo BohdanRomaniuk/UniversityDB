@@ -146,32 +146,36 @@ namespace UniversityDB.ViewModels
 
         public void Drop(IDropInfo dropInfo)
         {
-            //Database update logic
-           // DO THE FUCKING CHECK
+            //Database and UI update logic
             if ((dropInfo.TargetItem != (dropInfo.Data as UObject).Parent))
             {
                 var dropInfoTarget = dropInfo.TargetItem as UObject;
                 var dropInfoData = dropInfo.Data as UObject;
-                //MessageBox.Show("Allowed");
                 using (UniversityContext db = new UniversityContext())
                 {
-                    // Update UI
-                    dropInfoData.Parent?.Childrens.Remove(dropInfoData);
+                    var target = db.Objects.Where(o => o.Id == dropInfoTarget.Id).Include(c => c.Class).FirstOrDefault();
+                    var dragged = db.Objects.Where(o => o.Id == dropInfoData.Id).Include(c => c.Class)
+                        .Include(o => o.Parent).FirstOrDefault();
 
-                    dropInfoTarget.Childrens.Add(dropInfoData);
-                    dropInfoData.Parent = dropInfoTarget;
+                    // Check
+                    if (db.ClassesRules.Any(c => c.ClassId == target.ClassId && c.ClassIdInside == dragged.ClassId))
+                    {
+                        // Update UI
+                        dropInfoData.Parent?.Childrens.Remove(dropInfoData);
 
-                    // Update DB
-                    var target = db.Objects.Where(o => o.Id == dropInfoTarget.Id).FirstOrDefault();
-                    var dragged = db.Objects.Where(o => o.Id == dropInfoData.Id).Include(o => o.Parent).FirstOrDefault();
-                    dragged?.Parent.Childrens.Remove(dragged);
-                    target?.Childrens.Add(dragged);
-                    db.SaveChanges();
+                        dropInfoTarget.Childrens.Add(dropInfoData);
+                        dropInfoData.Parent = dropInfoTarget;
+
+                        // Update DB
+                        dragged?.Parent.Childrens.Remove(dragged);
+                        target?.Childrens.Add(dragged);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Об'єкт не може містити синівських елементів такого типу");
+                    }
                 }
-            }
-            else
-            {
-                MessageBox.Show("Об'єкт не може містити синівських елементів такого типу");
             }
         }
     }
