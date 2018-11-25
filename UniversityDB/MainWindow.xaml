@@ -8,6 +8,7 @@
         xmlns:model="clr-namespace:UniversityDB.Models"
         xmlns:bindTreeViewExpand="clr-namespace:UniversityDB.Infrastructure"
         xmlns:converters="clr-namespace:UniversityDB.Converters"
+        xmlns:commandBehaviours="clr-namespace:UniversityDB.Infrastructure"
         mc:Ignorable="d"
         Title="UniversityDB" Height="450" Width="800">
     <Window.Resources>
@@ -52,5 +53,64 @@
                 </HierarchicalDataTemplate>
             </TreeView.Resources>
         </TreeView>
+        <Button Content="Tree" Width="40" Height="10">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="Click">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="ContextMenu.IsOpen">
+                                            <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="True"/>
+                                        </BooleanAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </Style.Triggers>
+                    <Setter Property="ContextMenu">
+                        <Setter.Value>
+                            <ContextMenu>
+                                <ContextMenu.Template>
+                                    <ControlTemplate>
+                                        <Grid>
+                                            <TreeView >
+                                                <TreeView.ItemContainerStyle>
+                                                    <Style TargetType="{x:Type TreeViewItem}">
+                                                        <Setter Property="commandBehaviours:MouseDoubleClick.Command"
+                    Value="{Binding YourCommand}"/>
+                                                        <Setter Property="commandBehaviours:MouseDoubleClick.CommandParameter"
+                    Value="{Binding}"/>
+                                                    </Style>
+                                                </TreeView.ItemContainerStyle>
+                                                <TreeViewItem Header="Db">
+                                                    <TreeViewItem Header="MS SQL Server" commandBehaviours:MouseDoubleClick.Command="{Binding DataContext.YourCommand, Source={x:Reference MainW}}" />
+                                                    <TreeViewItem Header="MySQL" />
+                                                    <TreeViewItem Header="MongoDB" />
+                                                    <TreeViewItem Header="Postgres" />
+                                                </TreeViewItem>
+                                                <TreeViewItem Header="Lang">
+                                                    <TreeViewItem Header="C">
+                                                        <TreeViewItem Header="C#" />
+                                                        <TreeViewItem Header="C/C++" />
+                                                        <TreeViewItem Header="Java" />
+                                                    </TreeViewItem>
+                                                    <TreeViewItem Header="Basic">
+                                                        <TreeViewItem Header="Visual Basic" />
+                                                        <TreeViewItem Header="VB.Net" />
+                                                        <TreeViewItem Header="PureBasic" />
+                                                    </TreeViewItem>
+                                                </TreeViewItem>
+                                            </TreeView>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </ContextMenu.Template>
+                            </ContextMenu>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </Window>

@@ -36,6 +36,7 @@ namespace UniversityDB.ViewModels
         public MainViewModel()
         {
             ExpandCommand = new Command(Expand);
+            YourCommand = new Command(Your);
             db = new UniversityContext();
 
             //using (var db = new UniversityContext())
@@ -124,6 +125,13 @@ namespace UniversityDB.ViewModels
                     }
                 }
             }
+        }
+
+        public ICommand YourCommand { get; set; }
+
+        private void Your(object parameter)
+        {
+            MessageBox.Show("HELLO");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
