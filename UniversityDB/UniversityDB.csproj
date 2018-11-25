@@ -80,6 +80,7 @@
     <Compile Include="Infrastructure\Behaviours.cs" />
     <Compile Include="Infrastructure\Command.cs" />
     <Compile Include="Infrastructure\Enums\FormType.cs" />
+    <Compile Include="Infrastructure\MouseDoubleClick.cs" />
     <Compile Include="Infrastructure\UniversityContext.cs" />
     <Compile Include="Migrations\201809272132182_Initial.cs" />
     <Compile Include="Migrations\201809272132182_Initial.Designer.cs">
@@ -101,13 +102,23 @@
     <Compile Include="Migrations\201811212106552_UkrClassName.Designer.cs">
       <DependentUpon>201811212106552_UkrClassName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811251849001_StructureRedesign.cs" />
+    <Compile Include="Migrations\201811251849001_StructureRedesign.Designer.cs">
+      <DependentUpon>201811251849001_StructureRedesign.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SClass.cs" />
     <Compile Include="Models\SClassRules.cs" />
+    <Compile Include="Models\UDeanery.cs" />
+    <Compile Include="Models\UDepartment.cs" />
+    <Compile Include="Models\UFaculty.cs" />
+    <Compile Include="Models\UInventory.cs" />
     <Compile Include="Models\UMaterials.cs" />
     <Compile Include="Models\UObject.cs" />
     <Compile Include="Models\UPerson.cs" />
+    <Compile Include="Models\UStudent.cs" />
     <Compile Include="Models\UStudyingPerson.cs" />
+    <Compile Include="Models\UTeacher.cs" />
     <Compile Include="Models\UWorkingPerson.cs" />
     <Compile Include="ViewModels\UObjectViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -169,10 +180,14 @@
     <EmbeddedResource Include="Migrations\201811212106552_UkrClassName.resx">
       <DependentUpon>201811212106552_UkrClassName.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811251849001_StructureRedesign.resx">
+      <DependentUpon>201811251849001_StructureRedesign.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram2.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

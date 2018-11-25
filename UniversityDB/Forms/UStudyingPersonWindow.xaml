@@ -1,4 +1,5 @@
 ﻿<Window x:Class="UniversityDB.Forms.UStudyingPersonWindow"
+        x:Name="StudyingPersonWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -41,8 +42,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Застосувати" Command="{Binding SaveCommand}" CommandParameter="{Binding ElementName=PersonWindow}" Margin="3"/>
-            <Button Content="Скасувати" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=PersonWindow}" Grid.Column="1" Margin="3"/>
+            <Button Content="Застосувати" Command="{Binding SaveCommand}" CommandParameter="{Binding ElementName=StudyingPersonWindow}" Margin="3"/>
+            <Button Content="Скасувати" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=StudyingPersonWindow}" Grid.Column="1" Margin="3"/>
         </Grid>
     </DockPanel>
 </Window>

@@ -1,22 +1,21 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UniversityDB.Models
 {
-    [Table("Metherials")]
-    public class UMaterial: UObject
+    [Table("Departmets")]
+    public class UDepartment : UObject
     {
-        public string Type { get; set; }
+        public string Address { get; set; }
 
-        public UMaterial():
+        public UDepartment():
             base()
         {
         }
 
-        public UMaterial(string _name, string _type, int _class):
+        public UDepartment(string _name, string _address, int _class) :
             base(_name, _class)
         {
-            Type = _type;
+            Address = _address;
         }
 
         //---------Hierarchy of Behavior
@@ -28,7 +27,7 @@ namespace UniversityDB.Models
         public override void CopyPropertiesTo(UObject another)
         {
             base.CopyPropertiesTo(another);
-            (another as UMaterial).Type = Type;
+            (another as UDepartment).Address = Address;
         }
     }
 }

@@ -86,19 +86,19 @@ namespace UniversityDB.Models
             };
             if (ClassId != 0)
             {
-                var allowedChilds = db.Classes.Include(o => o.AllowedChildrens.Select(y => y.ClassInside))
-                                              .Where(c => c.Id == ClassId)
-                                              .SingleOrDefault()
-                                              .AllowedChildrens;
-                if(allowedChilds != null)
-                {
-                    Actions.Add(new ContextAction()
-                    {
-                        Name = "Додати",
-                        Action = null,
-                        Subs = allowedChilds.Select(e => new ContextAction() { Name = e.ClassInside.UkrName, Action = new Command(Add) }).ToList()
-                    });
-                }
+                //var allowedChilds = db.Classes.Include(o => o.AllowedChildrens.Select(y => y.ClassInside))
+                //                              .Where(c => c.Id == ClassId)
+                //                              .SingleOrDefault()
+                //                              .AllowedChildrens;
+                //if(allowedChilds != null)
+                //{
+                //    Actions.Add(new ContextAction()
+                //    {
+                //        Name = "Додати",
+                //        Action = null,
+                //        Subs = allowedChilds.Select(e => new ContextAction() { Name = e.ClassInside.UkrName, Action = new Command(Add) }).ToList()
+                //    });
+                //}
             }
             Actions.Add(new ContextAction() { Name = "Редагувати", Action = new Command(Edit) });
             Actions.Add(new ContextAction() { Name = "Видалити", Action = new Command(Delete) });
