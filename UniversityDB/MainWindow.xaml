@@ -3,7 +3,6 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:dd="urn:gong-wpf-dragdrop"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UniversityDB"
         xmlns:model="clr-namespace:UniversityDB.Models"
@@ -16,12 +15,7 @@
         <converters:MultiCommandparameterConverter x:Key="MultiCommandparameterConverter"></converters:MultiCommandparameterConverter>
     </Window.Resources>
     <Grid>
-        <TreeView x:Name="treeView" ItemsSource="{Binding Faculties, UpdateSourceTrigger=PropertyChanged}"
-                      dd:DragDrop.IsDragSource="True"
-                      dd:DragDrop.IsDropTarget="True"
-                      dd:DragDrop.UseDefaultDragAdorner="True"
-                      dd:DragDrop.UseDefaultEffectDataTemplate="True"
-                      dd:DragDrop.DropHandler="{Binding}">
+        <TreeView x:Name="treeView" ItemsSource="{Binding Faculties, UpdateSourceTrigger=PropertyChanged}">
             <TreeView.Resources>
                 <Style TargetType="TreeViewItem" >
                     <Setter Property="bindTreeViewExpand:Behaviours.ExpandingBehaviour"
@@ -58,13 +52,6 @@
                     </TextBlock>
                 </HierarchicalDataTemplate>
             </TreeView.Resources>
-            <!--TreeView.ItemContainerStyle>
-                <Style TargetType="TreeViewItem">
-                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
-                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
-                    <Setter Property="Visibility" Value="{Binding Visibility, Mode=TwoWay}" />
-                </>
-            </-->
         </TreeView>
         <Button Content="Tree" Width="40" Height="10">
             <Button.Style>

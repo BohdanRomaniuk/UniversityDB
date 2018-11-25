@@ -8,12 +8,10 @@ using System.Windows;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Data.Entity;
-using GongSolutions.Wpf.DragDrop;
-using System;
 
 namespace UniversityDB.ViewModels
 {
-    public class MainViewModel : INotifyPropertyChanged, IDropTarget
+    public class MainViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<UObject> faculties;
         private UObject loadingObject = new UObject("Loading", 1);
@@ -140,51 +138,6 @@ namespace UniversityDB.ViewModels
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public void DragOver(IDropInfo dropInfo)
-        {
-            if (dropInfo.Data is UObject &&
-                    dropInfo.TargetItem is UObject)
-            {
-                dropInfo.Effects = DragDropEffects.Move;
-                dropInfo.DropTargetAdorner = DropTargetAdorners.Highlight;
-            }
-        }
-
-        public void Drop(IDropInfo dropInfo)
-        {
-            //Database and UI update logic
-            if ((dropInfo.TargetItem != (dropInfo.Data as UObject).Parent))
-            {
-                var dropInfoTarget = dropInfo.TargetItem as UObject;
-                var dropInfoData = dropInfo.Data as UObject;
-                using (UniversityContext db = new UniversityContext())
-                {
-                    var target = db.Objects.Where(o => o.Id == dropInfoTarget.Id).Include(c => c.Class).FirstOrDefault();
-                    var dragged = db.Objects.Where(o => o.Id == dropInfoData.Id).Include(c => c.Class)
-                        .Include(o => o.Parent).FirstOrDefault();
-
-                    // Check
-                    if (db.ClassesRules.Any(c => c.ClassId == target.ClassId && c.ClassIdInside == dragged.ClassId))
-                    {
-                        // Update UI
-                        dropInfoData.Parent?.Childrens.Remove(dropInfoData);
-
-                        dropInfoTarget.Childrens.Add(dropInfoData);
-                        dropInfoData.Parent = dropInfoTarget;
-
-                        // Update DB
-                        dragged?.Parent.Childrens.Remove(dragged);
-                        target?.Childrens.Add(dragged);
-                        db.SaveChanges();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Об'єкт не може містити синівських елементів такого типу");
-                    }
-                }
-            }
         }
     }
 }
