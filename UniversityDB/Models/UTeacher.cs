@@ -3,20 +3,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UniversityDB.Models
 {
-    [Table("WorkingPersons")]
-    public class UWorkingPerson: UPerson
+    [Table("Teachers")]
+    public class UTeacher : UWorkingPerson
     {
-        public double Salary { get; set; }
+        public string Rank { get; set; }
 
-        public UWorkingPerson():
+        public UTeacher() :
             base()
         {
         }
 
-        public UWorkingPerson(string _name, DateTime _birthday, string _address, double _salary, int _class) :
-            base(_name, _birthday, _address, _class)
+        public UTeacher(string _name, DateTime _birthday, string _address, double _salary, string _rank, int _class) :
+            base(_name, _birthday, _address, _salary, _class)
         {
-            Salary = _salary;
+            Rank = _rank;
         }
 
         //---------Hierarchy of Behavior
@@ -28,7 +28,7 @@ namespace UniversityDB.Models
         public override void CopyPropertiesTo(UObject another)
         {
             base.CopyPropertiesTo(another);
-            (another as UWorkingPerson).Salary = Salary;
+            (another as UTeacher).Rank = Rank;
         }
     }
 }

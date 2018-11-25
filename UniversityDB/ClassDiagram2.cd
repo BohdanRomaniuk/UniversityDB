@@ -1,22 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="UniversityDB.Models.UObject" Collapsed="true">
-    <Position X="6" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAICAAAgIQAQIAAAIAIEQAQAgAMFAAACAgAAACAAgAA=</HashCode>
-      <FileName>Models\UObject.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
   <Class Name="UniversityDB.App" Collapsed="true">
-    <Position X="15.75" Y="1" Width="1.5" />
+    <Position X="12" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>App.xaml.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UniversityDB.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="22.75" Y="2" Width="1.5" />
+    <Position X="19" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>MainWindow.xaml.cs</FileName>
@@ -24,7 +16,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="UniversityDB.ContextAction" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="17.5" Y="2" Width="1.5" />
+    <Position X="13.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAIAAAAAAAAIAAAAAQAgAAAAAAAAAAAAAAAAAQ=</HashCode>
       <FileName>MainWindow.xaml.cs</FileName>
@@ -32,7 +24,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="UniversityDB.Converters.MultiCommandparameterConverter" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="17.5" Y="3" Width="1.5" />
+    <Position X="13.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Converters\MultiCommandparameterConverter.cs</FileName>
@@ -40,7 +32,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="UniversityDB.Forms.UObjectWindow" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="17.5" Y="5" Width="1.5" />
+    <Position X="12" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Forms\UObjectWindow.xaml.cs</FileName>
@@ -48,7 +40,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="UniversityDB.Forms.UPersonWindow" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="15.75" Y="5" Width="1.5" />
+    <Position X="13.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Forms\UPersonWindow.xaml.cs</FileName>
@@ -56,7 +48,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="UniversityDB.Forms.UStudyingPersonWindow" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="19.25" Y="5" Width="1.5" />
+    <Position X="15.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Forms\UStudyingPersonWindow.xaml.cs</FileName>
@@ -64,7 +56,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="UniversityDB.Forms.UWorkingPersonWindow" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="21" Y="5" Width="1.5" />
+    <Position X="17.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Forms\UWorkingPersonWindow.xaml.cs</FileName>
@@ -72,14 +64,14 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="UniversityDB.Infrastructure.Behaviours" Collapsed="true">
-    <Position X="17.5" Y="1" Width="1.5" />
+    <Position X="13.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAIAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAQ=</HashCode>
       <FileName>Infrastructure\Behaviours.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UniversityDB.Infrastructure.Command" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="22.75" Y="1" Width="1.5" />
+    <Position X="19" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAgAAACAAQAAEQEAABAAABAAAAAAAAAAAAAEAA=</HashCode>
       <FileName>Infrastructure\Command.cs</FileName>
@@ -87,21 +79,21 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="UniversityDB.Infrastructure.MouseDoubleClick" Collapsed="true">
-    <Position X="15.75" Y="3" Width="1.5" />
+    <Position X="12" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AIgIAAAAAAAAAAAAAAAAAIQAAAAAAAAAAAAAABAAAQA=</HashCode>
       <FileName>Infrastructure\MouseDoubleClick.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UniversityDB.Infrastructure.UniversityContext" Collapsed="true">
-    <Position X="21" Y="4" Width="1.5" />
+    <Position X="17.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAEAAAAAEAAAAgAAAAAAA=</HashCode>
       <FileName>Infrastructure\UniversityContext.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UniversityDB.Migrations.Initial" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="19.25" Y="2" Width="1.5" />
+    <Position X="15.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAMAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAAAI=</HashCode>
       <FileName>Migrations\201809272132182_Initial.cs</FileName>
@@ -109,7 +101,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="UniversityDB.Migrations.SelfFKNullable" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="15.75" Y="4" Width="1.5" />
+    <Position X="12" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAMAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAAAI=</HashCode>
       <FileName>Migrations\201810111308044_SelfFKNullable.cs</FileName>
@@ -117,7 +109,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="UniversityDB.Migrations.ClassesFKRequired" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="19.25" Y="1" Width="1.5" />
+    <Position X="15.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAMAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAAAI=</HashCode>
       <FileName>Migrations\201810131717597_ClassesFKRequired.cs</FileName>
@@ -125,7 +117,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="UniversityDB.Migrations.ClassesRules" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="21" Y="1" Width="1.5" />
+    <Position X="17.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAMAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAAAI=</HashCode>
       <FileName>Migrations\201810181037437_ClassesRules.cs</FileName>
@@ -133,7 +125,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="UniversityDB.Migrations.UkrClassName" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="19.25" Y="4" Width="1.5" />
+    <Position X="15.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAMAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAAAI=</HashCode>
       <FileName>Migrations\201811212106552_UkrClassName.cs</FileName>
@@ -141,14 +133,14 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="UniversityDB.Migrations.Configuration" Collapsed="true">
-    <Position X="15.75" Y="2" Width="1.5" />
+    <Position X="12" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Migrations\Configuration.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UniversityDB.Models.SClass" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="21" Y="3" Width="1.5" />
+    <Position X="17.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAYAAAAAQAgAAAAAAAAAAgAAAAAAE=</HashCode>
       <FileName>Models\SClass.cs</FileName>
@@ -156,68 +148,97 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="UniversityDB.Models.SClassRules" Collapsed="true">
-    <Position X="22.75" Y="3" Width="1.5" />
+    <Position X="19" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAIAAgAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAAAAAg=</HashCode>
       <FileName>Models\SClassRules.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UniversityDB.Models.UDepartment" Collapsed="true">
-    <Position X="5" Y="1.5" Width="1.5" />
+    <Position X="6" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAgAA=</HashCode>
       <FileName>Models\UDepartment.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UniversityDB.Models.UFaculty" Collapsed="true">
-    <Position X="4" Y="2.75" Width="1.5" />
+    <Position X="5.25" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\UFaculty.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="UniversityDB.Models.UInventory" Collapsed="true">
+    <Position X="9" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\UInventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="UniversityDB.Models.UMaterial" Collapsed="true">
-    <Position X="7" Y="1.5" Width="1.5" />
+    <Position X="0.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>Models\UMaterials.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="UniversityDB.Models.UObject" Collapsed="true">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAICAAAgIQAQIAAAIAIEQAQAgAMFAAACAgAAACAAgAA=</HashCode>
+      <FileName>Models\UObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Class Name="UniversityDB.Models.UPerson" Collapsed="true">
-    <Position X="1.25" Y="1.5" Width="1.5" />
+    <Position X="2.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIIAAACAAAAAEAAgAA=</HashCode>
       <FileName>Models\UPerson.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="UniversityDB.Models.UStudent" Collapsed="true">
+    <Position X="3.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\UStudent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="UniversityDB.Models.UStudyingPerson" Collapsed="true">
-    <Position X="0.5" Y="2.75" Width="1.5" />
+    <Position X="3.5" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAw=</HashCode>
       <FileName>Models\UStudyingPerson.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="UniversityDB.Models.UTeacher" Collapsed="true">
+    <Position X="1.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\UTeacher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="UniversityDB.Models.UWorkingPerson" Collapsed="true">
-    <Position X="2.25" Y="2.75" Width="1.5" />
+    <Position X="1.25" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\UWorkingPerson.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UniversityDB.Properties.Resources" Collapsed="true">
-    <Position X="19.25" Y="3" Width="1.5" />
+    <Position X="15.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="UniversityDB.Properties.Settings" Collapsed="true">
-    <Position X="17.5" Y="4" Width="1.5" />
+    <Position X="13.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="UniversityDB.ViewModels.MainViewModel" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="21" Y="2" Width="1.5" />
+    <Position X="17.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AwABEAEACAAQAAAAIAAAAAAAgAAAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>ViewModels\MainViewModel.cs</FileName>
@@ -225,15 +246,22 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="UniversityDB.ViewModels.UObjectViewModel" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="22.75" Y="4" Width="1.5" />
+    <Position X="19" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>UAAAAIAAQAAQAAAQIACAQAAAgAAAAAAQAQAAAAAEAAA=</HashCode>
       <FileName>ViewModels\UObjectViewModel.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
+  <Class Name="UniversityDB.Models.UDeanery" Collapsed="true">
+    <Position X="7.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\UDeanery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Enum Name="UniversityDB.Infrastructure.Enums.FormType" Collapsed="true">
-    <Position X="12.25" Y="6.5" Width="1.5" />
+    <Position X="12" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAABAAACAAAAAAAAAAA=</HashCode>
       <FileName>Infrastructure\Enums\FormType.cs</FileName>

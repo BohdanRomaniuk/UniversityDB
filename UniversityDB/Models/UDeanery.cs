@@ -2,20 +2,20 @@
 
 namespace UniversityDB.Models
 {
-    [Table("Departmets")]
-    public class UDepartment : UObject
+    [Table("Deaneries")]
+    public class UDeanery: UDepartment
     {
-        public string Address { get; set; }
+        public string Phone { get; set; }
 
-        public UDepartment():
+        public UDeanery() :
             base()
         {
         }
 
-        public UDepartment(string _name, string _address, int _class) :
-            base(_name, _class)
+        public UDeanery(string _name, string _address, string _phone, int _class) :
+            base(_name, _address, _class)
         {
-            Address = _address;
+            Phone = _phone;
         }
 
         //---------Hierarchy of Behavior
@@ -27,7 +27,7 @@ namespace UniversityDB.Models
         public override void CopyPropertiesTo(UObject another)
         {
             base.CopyPropertiesTo(another);
-            (another as UDepartment).Address = Address;
+            (another as UDeanery).Phone = Phone;
         }
     }
 }
