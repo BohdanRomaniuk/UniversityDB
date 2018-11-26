@@ -9,7 +9,6 @@
         xmlns:model="clr-namespace:UniversityDB.Models"
         xmlns:bindTreeViewExpand="clr-namespace:UniversityDB.Infrastructure"
         xmlns:converters="clr-namespace:UniversityDB.Converters"
-        xmlns:commandBehaviours="clr-namespace:UniversityDB.Infrastructure"
         mc:Ignorable="d"
         Title="UniversityDB" Height="450" Width="800">
     <Window.Resources>

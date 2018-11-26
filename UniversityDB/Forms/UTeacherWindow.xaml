@@ -32,7 +32,7 @@
             <Label Content="Адреса:" Grid.Row="3"/>
             <TextBox Text="{Binding Current.Address, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly}" Grid.Row="3" Grid.Column="1" Margin="3"/>
             <Label Content="Зарплата:" Grid.Row="4"/>
-            <TextBox Text="{Binding Current.Current.Salary, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly}" Grid.Row="4" Grid.Column="1" Margin="3"/>
+            <TextBox Text="{Binding Current.Salary, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly}" Grid.Row="4" Grid.Column="1" Margin="3"/>
             <Label Content="Ступінь:" Grid.Row="5"/>
             <TextBox Text="{Binding Current.Rank, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly}" Grid.Row="5" Grid.Column="1" Margin="3"/>
             <Label Content="Клас:" Grid.Row="6"/>
