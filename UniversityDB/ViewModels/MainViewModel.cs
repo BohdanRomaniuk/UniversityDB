@@ -91,6 +91,9 @@ namespace UniversityDB.ViewModels
             //    db.Classes.Add(new SClass("UFaculty", "Факультет", "UFacultyWindow")); //8 
             //    db.Classes.Add(new SClass("UDeanery", "Деканат", "UDeaneryWindow")); //9
 
+            //    db.Classes.Add(new SClass("UInventiry", "Інвентар", "UInventiryWindow")); //10
+            //    db.Classes.Add(new SClass("URoom", "Аудиторія", "URoomWindow")); //11
+
             //    db.ClassesRules.Add(new SClassRules() { ClassId = 1, ClassIdInside = 1 });
             //    db.ClassesRules.Add(new SClassRules() { ClassId = 1, ClassIdInside = 2 });
             //    db.ClassesRules.Add(new SClassRules() { ClassId = 1, ClassIdInside = 3 });
@@ -100,6 +103,19 @@ namespace UniversityDB.ViewModels
             //    db.ClassesRules.Add(new SClassRules() { ClassId = 1, ClassIdInside = 7 });
             //    db.ClassesRules.Add(new SClassRules() { ClassId = 1, ClassIdInside = 8 });
             //    db.ClassesRules.Add(new SClassRules() { ClassId = 1, ClassIdInside = 9 });
+            //    db.ClassesRules.Add(new SClassRules() { ClassId = 1, ClassIdInside = 10 });
+            //    db.ClassesRules.Add(new SClassRules() { ClassId = 1, ClassIdInside = 11 });
+            //    db.ClassesRules.Add(new SClassRules() { ClassId = 1, ClassIdInside = 1 });
+            //    db.ClassesRules.Add(new SClassRules() { ClassId = 2, ClassIdInside = 1 });
+            //    db.ClassesRules.Add(new SClassRules() { ClassId = 3, ClassIdInside = 1 });
+            //    db.ClassesRules.Add(new SClassRules() { ClassId = 4, ClassIdInside = 1 });
+            //    db.ClassesRules.Add(new SClassRules() { ClassId = 5, ClassIdInside = 1 });
+            //    db.ClassesRules.Add(new SClassRules() { ClassId = 6, ClassIdInside = 1 });
+            //    db.ClassesRules.Add(new SClassRules() { ClassId = 7, ClassIdInside = 1 });
+            //    db.ClassesRules.Add(new SClassRules() { ClassId = 8, ClassIdInside = 1 });
+            //    db.ClassesRules.Add(new SClassRules() { ClassId = 9, ClassIdInside = 1 });
+            //    db.ClassesRules.Add(new SClassRules() { ClassId = 10, ClassIdInside = 1 });
+            //    db.ClassesRules.Add(new SClassRules() { ClassId = 11, ClassIdInside = 1 });
 
             //    UObject lnu = new UObject("ЛНУ ім. І. Франка", 1);
             //    UObject faculties = new UObject("Факультети", 1);
@@ -108,7 +124,7 @@ namespace UniversityDB.ViewModels
 
             //    UObject fpmi = new UFaculty("Прикладної математики та інформатики", "вул. Університетська 1", "ami.lnu.edu.ua", 8);
             //    fpmi.Childrens = new ObservableCollection<UObject>();
-            //    fpmi.Childrens.Add(new UObject("Деканат", 1)
+            //    fpmi.Childrens.Add(new UDeanery("Деканат", "вул Університська 1", "0323232", 1)
             //    {
             //        Childrens = new ObservableCollection<UObject>()
             //        {

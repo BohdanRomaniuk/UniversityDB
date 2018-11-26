@@ -1,0 +1,45 @@
+﻿<Window x:Class="UniversityDB.Forms.URoomWindow"
+        x:Name="RoomWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UniversityDB.Forms"
+        mc:Ignorable="d"
+        Title="{Binding Current.Name, UpdateSourceTrigger=PropertyChanged}" Height="185" Width="278.151">
+    <DockPanel>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Ідентифікатор:"/>
+            <TextBox Text="{Binding Current.Id}" IsReadOnly="True" Margin="3" Grid.Column="1" />
+            <Label Content="Назва:" Grid.Row="1"/>
+            <TextBox Text="{Binding Current.InventoryNumber, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly}" Grid.Row="1" Grid.Column="1" Margin="3"/>
+            <Label Content="Номер аудиторії:" Grid.Row="2"/>
+            <TextBox Text="{Binding Current.RoomNumber}" IsReadOnly="True" Grid.Row="2" Grid.Column="1" Margin="3"/>
+            <Label Content="Клас:" Grid.Row="3"/>
+            <TextBox Text="{Binding Current.Class.Name}" IsReadOnly="True" Grid.Row="3" Grid.Column="1" Margin="3"/>
+            <Label Content="Батьківський тип:" Grid.Row="4"/>
+            <TextBox Text="{Binding Current.Parent.Name}" IsReadOnly="True" Grid.Row="4" Grid.Column="1" Margin="3"/>
+        </Grid>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Застосувати" Command="{Binding SaveCommand}" CommandParameter="{Binding ElementName=RoomWindow}" Margin="3"/>
+            <Button Content="Скасувати" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=RoomWindow}" Grid.Column="1" Margin="3"/>
+        </Grid>
+    </DockPanel>
+</Window>
+
