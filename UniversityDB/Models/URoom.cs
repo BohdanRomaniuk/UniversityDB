@@ -1,8 +1,12 @@
-﻿namespace UniversityDB.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace UniversityDB.Models
 {
+    [Table("Rooms")]
     public class URoom : UObject
     {
         public int RoomNumber { get; set; }
+        public int SeatsNumber { get; set; }
 
         public URoom():
             base()
@@ -16,15 +20,16 @@
         }
 
         //---------Hierarchy of Behavior
-        //protected override void CreateActions()
-        //{
-        //    base.CreateActions();
-        //}
+        protected override void CreateActions()
+        {
+            base.CreateActions();
+        }
 
         public override void CopyPropertiesTo(UObject another)
         {
             base.CopyPropertiesTo(another);
             (another as URoom).RoomNumber = RoomNumber;
+            (another as URoom).SeatsNumber = SeatsNumber;
         }
     }
 }

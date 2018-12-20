@@ -38,7 +38,6 @@ namespace UniversityDB.ViewModels
             get
             {
                 return isReadOnly;
-
             }
             set
             {

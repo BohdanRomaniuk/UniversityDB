@@ -14,6 +14,7 @@ namespace UniversityDB.Models
         public UPerson():
             base()
         {
+            Birthday = Convert.ToDateTime("01.01.2010");
         }
 
         public UPerson(string _name, DateTime _birthday, string _address, int _class) :

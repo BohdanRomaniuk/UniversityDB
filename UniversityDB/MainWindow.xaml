@@ -26,7 +26,7 @@
                     <Setter Property="bindTreeViewExpand:Behaviours.ExpandingBehaviour"
                             Value="{Binding DataContext.ExpandCommand, Source={x:Reference treeView}}" />
                 </Style>
-                <HierarchicalDataTemplate DataType="{x:Type model:UObject}" ItemsSource="{Binding Path=Childrens, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <HierarchicalDataTemplate DataType="{x:Type model:UObject}"  ItemsSource="{Binding Path=Childrens, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <TextBlock Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <TextBlock.ContextMenu>
                             <ContextMenu ItemsSource="{Binding Actions}">
@@ -48,7 +48,7 @@
                                     </Style>
                                 </ContextMenu.ItemContainerStyle>
                                 <ContextMenu.ItemTemplate>
-                                    <HierarchicalDataTemplate DataType="{x:Type local:ContextAction}" ItemsSource="{Binding Path=Subs}">
+                                    <HierarchicalDataTemplate  DataType="{x:Type local:ContextAction}" ItemsSource="{Binding Path=Subs}">
                                         <TextBlock Text="{Binding Name}"/>
                                     </HierarchicalDataTemplate>
                                 </ContextMenu.ItemTemplate>

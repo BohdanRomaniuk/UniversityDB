@@ -206,6 +206,4 @@ namespace UniversityDB.Models
             another.ClassId = ClassId;
         }
     }
-
-
 }

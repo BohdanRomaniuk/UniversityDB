@@ -4,41 +4,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:UniversityDB.Forms"
+        xmlns:controls="clr-namespace:UniversityDB.Controls"
         mc:Ignorable="d"
-        Title="{Binding Current.Name, UpdateSourceTrigger=PropertyChanged}" Height="185" Width="278.151">
-    <DockPanel>
-        <Grid DockPanel.Dock="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Label Content="Ідентифікатор:"/>
-            <TextBox Text="{Binding Current.Id}" IsReadOnly="True" Margin="3" Grid.Column="1" />
-            <Label Content="Назва:" Grid.Row="1"/>
-            <TextBox Text="{Binding Current.InventoryNumber, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly}" Grid.Row="1" Grid.Column="1" Margin="3"/>
-            <Label Content="Інв. номер:" Grid.Row="2"/>
-            <TextBox Text="{Binding Current.Address}" IsReadOnly="True" Grid.Row="2" Grid.Column="1" Margin="3"/>
-            <Label Content="Клас:" Grid.Row="3"/>
-            <TextBox Text="{Binding Current.Class.Name}" IsReadOnly="True" Grid.Row="3" Grid.Column="1" Margin="3"/>
-            <Label Content="Батьківський тип:" Grid.Row="4"/>
-            <TextBox Text="{Binding Current.Parent.Name}" IsReadOnly="True" Grid.Row="4" Grid.Column="1" Margin="3"/>
-        </Grid>
-        <Grid DockPanel.Dock="Bottom">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Button Content="Застосувати" Command="{Binding SaveCommand}" CommandParameter="{Binding ElementName=InventoryNumberWindow}" Margin="3"/>
-            <Button Content="Скасувати" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=InventoryNumberWindow}" Grid.Column="1" Margin="3"/>
-        </Grid>
-    </DockPanel>
+        Title="{Binding Current.Name, UpdateSourceTrigger=PropertyChanged}" SizeToContent="WidthAndHeight">
+    <StackPanel>
+        <controls:NamedTextBox Title="Ідентифікатор:" Text="Id"  DataContext="{Binding}" IsReadOnly="True"/>
+        <controls:NamedTextBox Title="Назва:" Text="Name" DataContext="{Binding}" IsReadOnly="{Binding IsReadOnly}"/>
+        <controls:NamedTextBox Title="Інв. номер:" Text="InventoryNumber" DataContext="{Binding}" IsReadOnly="{Binding IsReadOnly}"/>
+        <controls:NamedTextBox Title="Клас:" Text="Class.Name" DataContext="{Binding}" IsReadOnly="True"/>
+        <controls:NamedTextBox Title="Батьківський тип:" Text="Parent.Name" DataContext="{Binding}" IsReadOnly="True"/>
+        <controls:SaveCancelButtons DataContext="{Binding}" CurrentWindow="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
+    </StackPanel>
 </Window>
