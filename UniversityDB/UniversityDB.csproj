@@ -180,9 +180,9 @@
     <Compile Include="Infrastructure\Enums\FormType.cs" />
     <Compile Include="Infrastructure\MouseDoubleClick.cs" />
     <Compile Include="Infrastructure\UniversityContext.cs" />
-    <Compile Include="Migrations\201812201800345_Initial.cs" />
-    <Compile Include="Migrations\201812201800345_Initial.Designer.cs">
-      <DependentUpon>201812201800345_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201812202306019_Initial.cs" />
+    <Compile Include="Migrations\201812202306019_Initial.Designer.cs">
+      <DependentUpon>201812202306019_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SClass.cs" />
@@ -395,8 +395,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201812201800345_Initial.resx">
-      <DependentUpon>201812201800345_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812202306019_Initial.resx">
+      <DependentUpon>201812202306019_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
