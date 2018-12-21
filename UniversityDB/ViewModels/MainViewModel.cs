@@ -201,6 +201,7 @@ namespace UniversityDB.ViewModels
             db.Classes.Add(new SClass("UTechniqueInventory", "Технічний інвентар", "UTechniqueInventoryWindow"));
             db.Classes.Add(new SClass("UTransportInventory", "Транспорт", "UTransportInventoryWindow"));
             db.Classes.Add(new SClass("UPlan", "План", "UPlanWindow"));
+            db.Classes.Add(new SClass("UMaterial", "Матеріал", "UMaterialWindow"));
             db.SaveChanges();
             for (int i = 0; i < db.Classes.Count(); ++i)
             {

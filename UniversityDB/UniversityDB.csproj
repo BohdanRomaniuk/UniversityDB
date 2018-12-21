@@ -124,6 +124,9 @@
     <Compile Include="Forms\UMagazineWindow.xaml.cs">
       <DependentUpon>UMagazineWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UMaterialWindow.xaml.cs">
+      <DependentUpon>UMaterialWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UMeetingWindow.xaml.cs">
       <DependentUpon>UMeetingWindow.xaml</DependentUpon>
     </Compile>
@@ -317,6 +320,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\UMagazineWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UMaterialWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
