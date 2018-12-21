@@ -69,23 +69,36 @@ namespace UniversityDB.ViewModels
         private void AppendChildrenByParent(UObject parent)
         {
             var childs = new ObservableCollection<UObject>(db.Objects.Where(o => o.ParentId == parent.Id)
-                .Include(o => o.Class)
-                .Include(o => o.Class.AllowedChildrens.Select(y => y.ClassInside))
-                .ToList());
+            .Include(o => o.Class)
+            .Include(o => o.Class.AllowedChildrens.Select(y => y.ClassInside))
+            .ToList());
 
             if (parent != null)
             {
                 parent.Childrens.Remove(loadingObject);
-                parent.Childrens = new ObservableCollection<UObject>();
-                foreach (var child in childs)
+                if (parent.Childrens.Count() == 0)
                 {
-                    child.Parent = parent;
-                    var subChildsCount = db.Objects.Count(o => o.ParentId == child.Id);
-                    if (subChildsCount != 0)
+                    foreach (var child in childs)
                     {
-                        child.Childrens = new ObservableCollection<UObject> { loadingObject };
+                        child.Parent = parent;
+                        var subChildsCount = db.Objects.Count(o => o.ParentId == child.Id);
+                        if (subChildsCount != 0)
+                        {
+                            child.Childrens = new ObservableCollection<UObject> { loadingObject };
+                        }
+                        parent.Childrens.Add(child);
                     }
-                    parent.Childrens.Add(child);
+                }
+                else
+                {
+                    foreach (var child in parent.Childrens)
+                    {
+                        var subChildsCount = db.Objects.Count(o => o.ParentId == child.Id);
+                        if (subChildsCount != 0)
+                        {
+                            child.Childrens = new ObservableCollection<UObject> { loadingObject };
+                        }
+                    }
                 }
             }
         }
