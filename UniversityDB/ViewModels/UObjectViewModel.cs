@@ -112,6 +112,7 @@ namespace UniversityDB.ViewModels
 
                 //Fix deleting bug
                 Current.Parent = Parent;
+                //Fix expander bug
                 Parent.Childrens.Add(objectFromDb);
             }
             else if (Type == FormType.Edit)

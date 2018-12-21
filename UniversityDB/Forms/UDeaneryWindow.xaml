@@ -56,22 +56,16 @@
                     Value="{Binding}"/>
                                                             </Style>
                                                         </TreeView.ItemContainerStyle>
-                                                        <TreeViewItem Header="Db">
-                                                            <TreeViewItem Header="MS SQL Server" commandBehaviours:MouseDoubleClick.Command="{Binding DataContext.YourCommand, ElementName=DeaneryWindow}" />
-                                                            <TreeViewItem Header="MySQL" />
-                                                            <TreeViewItem Header="MongoDB" />
-                                                            <TreeViewItem Header="Postgres" />
+                                                        <TreeViewItem Header="Дияк І. І." commandBehaviours:MouseDoubleClick.Command="{Binding DataContext.YourCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
+                                                            <TreeViewItem Header="Ступінь" />
+                                                            <TreeViewItem Header="Навчання" />
                                                         </TreeViewItem>
-                                                        <TreeViewItem Header="Lang">
-                                                            <TreeViewItem Header="C">
-                                                                <TreeViewItem Header="C#" />
-                                                                <TreeViewItem Header="C/C++" />
-                                                                <TreeViewItem Header="Java" />
+                                                        <TreeViewItem Header="Горлач В. М.">
+                                                            <TreeViewItem Header="Cтупінь">
+                                                                <TreeViewItem Header="Кандидатська" />
+                                                                <TreeViewItem Header="Освіта" />
                                                             </TreeViewItem>
-                                                            <TreeViewItem Header="Basic">
-                                                                <TreeViewItem Header="Visual Basic" />
-                                                                <TreeViewItem Header="VB.Net" />
-                                                                <TreeViewItem Header="PureBasic" />
+                                                            <TreeViewItem Header="Навчання">
                                                             </TreeViewItem>
                                                         </TreeViewItem>
                                                     </TreeView>

@@ -39,7 +39,6 @@ namespace UniversityDB.ViewModels
         {
             db = new UniversityContext();
             ExpandCommand = new Command(Expand);
-            YourCommand = new Command(Your);
 
             //DB Creation
             if (db.Objects.Count() == 0)
@@ -68,6 +67,7 @@ namespace UniversityDB.ViewModels
 
         private void AppendChildrenByParent(UObject parent)
         {
+            parent.Childrens.Clear();
             var childs = new ObservableCollection<UObject>(db.Objects.Where(o => o.ParentId == parent.Id)
             .Include(o => o.Class)
             .Include(o => o.Class.AllowedChildrens.Select(y => y.ClassInside))
@@ -75,7 +75,6 @@ namespace UniversityDB.ViewModels
 
             if (parent != null)
             {
-                parent.Childrens.Remove(loadingObject);
                 if (parent.Childrens.Count() == 0)
                 {
                     foreach (var child in childs)
@@ -101,13 +100,6 @@ namespace UniversityDB.ViewModels
                     }
                 }
             }
-        }
-
-        public ICommand YourCommand { get; set; }
-
-        private void Your(object parameter)
-        {
-            MessageBox.Show("HELLO");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -226,7 +218,7 @@ namespace UniversityDB.ViewModels
             UObject majors = new UObject("Керівники", 1);
             UObject symbols = new UObject("Символи", 1);
 
-            UObject fpmi = new UFaculty("Прикладної математики та інформатики", "вул. Університетська 1", "ami.lnu.edu.ua", 8);
+            UObject fpmi = new UFaculty("ФПМІ", "вул. Університетська 1", "ami.lnu.edu.ua", 8);
             fpmi.Childrens = new ObservableCollection<UObject>();
             fpmi.Childrens.Add(new UDeanery("Деканат", "вул Університська 1", "0323232", 1)
             {
