@@ -40,6 +40,9 @@ namespace UniversityDB.Migrations
                         Name = c.String(nullable: false),
                         ClassId = c.Int(nullable: false),
                         ParentId = c.Int(),
+                        PlanType = c.String(),
+                        ApprovedBy = c.String(),
+                        Discriminator = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Objects", t => t.ParentId)
@@ -194,6 +197,19 @@ namespace UniversityDB.Migrations
                 .Index(t => t.Id);
             
             CreateTable(
+                "dbo.EducationalSubjects",
+                c => new
+                    {
+                        Id = c.Int(nullable: false),
+                        LecturesCount = c.Int(nullable: false),
+                        PractiveCount = c.Int(nullable: false),
+                        Reporting = c.String(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Objects", t => t.Id)
+                .Index(t => t.Id);
+            
+            CreateTable(
                 "dbo.Events",
                 c => new
                     {
@@ -244,6 +260,11 @@ namespace UniversityDB.Migrations
                     {
                         Id = c.Int(nullable: false),
                         InventoryNumber = c.Int(nullable: false),
+                        Discriminator = c.String(nullable: false, maxLength: 128),
+                        Category = c.String(),
+                        Varanty = c.Int(),
+                        Type = c.String(),
+                        Year = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Objects", t => t.Id)
@@ -376,6 +397,19 @@ namespace UniversityDB.Migrations
                 .Index(t => t.Id);
             
             CreateTable(
+                "dbo.Reports",
+                c => new
+                    {
+                        Id = c.Int(nullable: false),
+                        ReportingType = c.String(),
+                        Date = c.DateTime(nullable: false),
+                        Mark = c.Double(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Objects", t => t.Id)
+                .Index(t => t.Id);
+            
+            CreateTable(
                 "dbo.Rooms",
                 c => new
                     {
@@ -441,6 +475,7 @@ namespace UniversityDB.Migrations
             DropForeignKey("dbo.PracticeRooms", "Id", "dbo.Rooms");
             DropForeignKey("dbo.DiningRooms", "Id", "dbo.Rooms");
             DropForeignKey("dbo.Rooms", "Id", "dbo.Objects");
+            DropForeignKey("dbo.Reports", "Id", "dbo.Objects");
             DropForeignKey("dbo.Repairs", "Id", "dbo.Processes");
             DropForeignKey("dbo.Processes", "Id", "dbo.Objects");
             DropForeignKey("dbo.Newspapers", "Id", "dbo.PrintedEditions");
@@ -457,6 +492,7 @@ namespace UniversityDB.Migrations
             DropForeignKey("dbo.Festivals", "Id", "dbo.Events");
             DropForeignKey("dbo.Excursions", "Id", "dbo.Events");
             DropForeignKey("dbo.Events", "Id", "dbo.Objects");
+            DropForeignKey("dbo.EducationalSubjects", "Id", "dbo.Objects");
             DropForeignKey("dbo.StudentTickets", "Id", "dbo.Documents");
             DropForeignKey("dbo.Gradebooks", "Id", "dbo.Documents");
             DropForeignKey("dbo.Contracts", "Id", "dbo.Documents");
@@ -479,6 +515,7 @@ namespace UniversityDB.Migrations
             DropIndex("dbo.PracticeRooms", new[] { "Id" });
             DropIndex("dbo.DiningRooms", new[] { "Id" });
             DropIndex("dbo.Rooms", new[] { "Id" });
+            DropIndex("dbo.Reports", new[] { "Id" });
             DropIndex("dbo.Repairs", new[] { "Id" });
             DropIndex("dbo.Processes", new[] { "Id" });
             DropIndex("dbo.Newspapers", new[] { "Id" });
@@ -495,6 +532,7 @@ namespace UniversityDB.Migrations
             DropIndex("dbo.Festivals", new[] { "Id" });
             DropIndex("dbo.Excursions", new[] { "Id" });
             DropIndex("dbo.Events", new[] { "Id" });
+            DropIndex("dbo.EducationalSubjects", new[] { "Id" });
             DropIndex("dbo.StudentTickets", new[] { "Id" });
             DropIndex("dbo.Gradebooks", new[] { "Id" });
             DropIndex("dbo.Contracts", new[] { "Id" });
@@ -517,6 +555,7 @@ namespace UniversityDB.Migrations
             DropTable("dbo.PracticeRooms");
             DropTable("dbo.DiningRooms");
             DropTable("dbo.Rooms");
+            DropTable("dbo.Reports");
             DropTable("dbo.Repairs");
             DropTable("dbo.Processes");
             DropTable("dbo.Newspapers");
@@ -533,6 +572,7 @@ namespace UniversityDB.Migrations
             DropTable("dbo.Festivals");
             DropTable("dbo.Excursions");
             DropTable("dbo.Events");
+            DropTable("dbo.EducationalSubjects");
             DropTable("dbo.StudentTickets");
             DropTable("dbo.Gradebooks");
             DropTable("dbo.Contracts");

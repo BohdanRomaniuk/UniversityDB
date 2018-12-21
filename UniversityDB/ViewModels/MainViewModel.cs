@@ -164,38 +164,38 @@ namespace UniversityDB.ViewModels
 
         private void CreateDb()
         {
-            db.Classes.Add(new SClass("UObject", "Об'єкт", "UObjectWindow")); //1
+            db.Classes.Add(new SClass("UObject", "Об'єкт", "UObjectWindow"));
 
-            db.Classes.Add(new SClass("UPerson", "Особу", "UPersonWindow")); //2 
-            db.Classes.Add(new SClass("UStudyingPerson", "Особу, яка вчиться", "UStudyingPersonWindow")); //3
-            db.Classes.Add(new SClass("UStudent", "Студента", "UStudentWindow")); //4
-            db.Classes.Add(new SClass("UWorkingPerson", "Особу, яка працює", "UWorkingPersonWindow")); //5
-            db.Classes.Add(new SClass("UTeacher", "Вчителя", "UTeacherWindow")); //6
+            db.Classes.Add(new SClass("UPerson", "Особу", "UPersonWindow")); 
+            db.Classes.Add(new SClass("UStudyingPerson", "Особу, яка вчиться", "UStudyingPersonWindow"));
+            db.Classes.Add(new SClass("UStudent", "Студента", "UStudentWindow"));
+            db.Classes.Add(new SClass("UWorkingPerson", "Особу, яка працює", "UWorkingPersonWindow"));
+            db.Classes.Add(new SClass("UTeacher", "Вчителя", "UTeacherWindow"));
 
-            db.Classes.Add(new SClass("UDepartment", "Відділ", "UDepartmentWindow")); //7 
-            db.Classes.Add(new SClass("UFaculty", "Факультет", "UFacultyWindow")); //8 
-            db.Classes.Add(new SClass("UDeanery", "Деканат", "UDeaneryWindow")); //9
+            db.Classes.Add(new SClass("UDepartment", "Відділ", "UDepartmentWindow"));
+            db.Classes.Add(new SClass("UFaculty", "Факультет", "UFacultyWindow"));
+            db.Classes.Add(new SClass("UDeanery", "Деканат", "UDeaneryWindow"));
 
-            db.Classes.Add(new SClass("UInventory", "Інвентар", "UInventoryWindow")); //10
-            db.Classes.Add(new SClass("URoom", "Аудиторія", "URoomWindow")); //11
+            db.Classes.Add(new SClass("UInventory", "Інвентар", "UInventoryWindow"));
+            db.Classes.Add(new SClass("URoom", "Аудиторія", "URoomWindow"));
 
-            db.Classes.Add(new SClass("UEvent", "Подія", "UEventWindow")); //12
-            db.Classes.Add(new SClass("UExcursion", "Екскурсія", "UExcursionWindow")); //13
-            db.Classes.Add(new SClass("UFestival", "Фестиваль", "UFestivalWindow")); //14
-            db.Classes.Add(new SClass("UMeeting", "Зустріч", "UMeetingWindow")); //15
+            db.Classes.Add(new SClass("UEvent", "Подія", "UEventWindow"));
+            db.Classes.Add(new SClass("UExcursion", "Екскурсія", "UExcursionWindow"));
+            db.Classes.Add(new SClass("UFestival", "Фестиваль", "UFestivalWindow"));
+            db.Classes.Add(new SClass("UMeeting", "Зустріч", "UMeetingWindow"));
 
-            db.Classes.Add(new SClass("UDocument", "Документ", "UDocumentWindow")); //16
-            db.Classes.Add(new SClass("UContract", "Договір", "UContractWindow")); //17
-            db.Classes.Add(new SClass("UStudentTicket", "Учнівський", "UStudentTicketWindow")); //18
-            db.Classes.Add(new SClass("UGradebook", "Заліковка", "UGradebookWindow")); //19
-            db.Classes.Add(new SClass("UPrintEdition", "Друковане видання", "UPrintEditionWindow")); // 20
-            db.Classes.Add(new SClass("UNewspaper", "Газета", "UNewspaperWindow")); //21
-            db.Classes.Add(new SClass("UMagazine", "Журнал", "UMagazineWindow")); //22
+            db.Classes.Add(new SClass("UDocument", "Документ", "UDocumentWindow"));
+            db.Classes.Add(new SClass("UContract", "Договір", "UContractWindow"));
+            db.Classes.Add(new SClass("UStudentTicket", "Учнівський", "UStudentTicketWindow"));
+            db.Classes.Add(new SClass("UGradebook", "Заліковка", "UGradebookWindow"));
+            db.Classes.Add(new SClass("UPrintEdition", "Друковане видання", "UPrintEditionWindow"));
+            db.Classes.Add(new SClass("UNewspaper", "Газета", "UNewspaperWindow"));
+            db.Classes.Add(new SClass("UMagazine", "Журнал", "UMagazineWindow"));
 
-            db.Classes.Add(new SClass("UProcess", "Процес", "UProcessWindow")); //23
-            db.Classes.Add(new SClass("URepair", "Ремонт", "URepairWindow")); //24
-            db.Classes.Add(new SClass("USymbol", "Символ", "USymbolWindow")); //25
-            db.Classes.Add(new SClass("UStudyingRoom", "Лекційна аудиторія", "UStudyingRoomWindow"));//26
+            db.Classes.Add(new SClass("UProcess", "Процес", "UProcessWindow"));
+            db.Classes.Add(new SClass("URepair", "Ремонт", "URepairWindow"));
+            db.Classes.Add(new SClass("USymbol", "Символ", "USymbolWindow"));
+            db.Classes.Add(new SClass("UStudyingRoom", "Лекційна аудиторія", "UStudyingRoomWindow"));
             db.Classes.Add(new SClass("UPracticeRoom", "Лабораторія", "UPracticeRoomWindow"));
             db.Classes.Add(new SClass("UDiningRoom", "Їдальня", "UDiningRoomWindow"));
             db.Classes.Add(new SClass("UBuilding", "Будівля", "UBuildingWindow"));
@@ -203,7 +203,12 @@ namespace UniversityDB.ViewModels
             db.Classes.Add(new SClass("USportBuilding", "Спорткомплекс", "USportBuildingWindow"));
             db.Classes.Add(new SClass("UBotanicGardenBuilding", "Ботанічний сад", "UBotanicGardenBuildingWindow"));
             db.Classes.Add(new SClass("UClinicBuilding", "Поліклініка", "UClinicBuildingWindow"));
-            db.Classes.Add(new SClass("UCampBuilding", "Табір", "UCampBuildingWindow"));//34
+            db.Classes.Add(new SClass("UCampBuilding", "Табір", "UCampBuildingWindow"));
+            db.Classes.Add(new SClass("UEducationalSubject", "Навчальний предмет", "UEducationalSubjectWindow"));
+            db.Classes.Add(new SClass("UReporting", "Звітність", "UReportingWindow"));
+            db.Classes.Add(new SClass("UTechniqueInventory", "Технічний інвентар", "UTechniqueInventoryWindow"));
+            db.Classes.Add(new SClass("UTransportInventory", "Транспорт", "UTransportInventoryWindow"));
+            db.Classes.Add(new SClass("UPlan", "План", "UPlanWindow"));
             db.SaveChanges();
             for (int i = 0; i < db.Classes.Count(); ++i)
             {

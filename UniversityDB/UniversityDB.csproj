@@ -100,6 +100,9 @@
     <Compile Include="Forms\UDocumentWindow.xaml.cs">
       <DependentUpon>UDocumentWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UEducationalSubjectWindow.xaml.cs">
+      <DependentUpon>UEducationalSubjectWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UEventWindow.xaml.cs">
       <DependentUpon>UEventWindow.xaml</DependentUpon>
     </Compile>
@@ -133,6 +136,9 @@
     <Compile Include="Forms\UPersonWindow.xaml.cs">
       <DependentUpon>UPersonWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UPlanWindow.xaml.cs">
+      <DependentUpon>UPlanWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UPracticeRoomWindow.xaml.cs">
       <DependentUpon>UPracticeRoomWindow.xaml</DependentUpon>
     </Compile>
@@ -144,6 +150,9 @@
     </Compile>
     <Compile Include="Forms\URepairWindow.xaml.cs">
       <DependentUpon>URepairWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UReportingWindow.xaml.cs">
+      <DependentUpon>UReportingWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\URoomWindow.xaml.cs">
       <DependentUpon>URoomWindow.xaml</DependentUpon>
@@ -172,6 +181,12 @@
     <Compile Include="Forms\UTeacherWindow.xaml.cs">
       <DependentUpon>UTeacherWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UTechniqueInventoryWindow.xaml.cs">
+      <DependentUpon>UTechniqueInventoryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UTransportInventoryWindow.xaml.cs">
+      <DependentUpon>UTransportInventoryWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UWorkingPersonWindow.xaml.cs">
       <DependentUpon>UWorkingPersonWindow.xaml</DependentUpon>
     </Compile>
@@ -180,9 +195,9 @@
     <Compile Include="Infrastructure\Enums\FormType.cs" />
     <Compile Include="Infrastructure\MouseDoubleClick.cs" />
     <Compile Include="Infrastructure\UniversityContext.cs" />
-    <Compile Include="Migrations\201812202306019_Initial.cs" />
-    <Compile Include="Migrations\201812202306019_Initial.Designer.cs">
-      <DependentUpon>201812202306019_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201812210053549_Initial.cs" />
+    <Compile Include="Migrations\201812210053549_Initial.Designer.cs">
+      <DependentUpon>201812210053549_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SClass.cs" />
@@ -196,6 +211,7 @@
     <Compile Include="Models\UDepartment.cs" />
     <Compile Include="Models\UDiningRoom.cs" />
     <Compile Include="Models\UDocument.cs" />
+    <Compile Include="Models\UEducationalSubject.cs" />
     <Compile Include="Models\UEvent.cs" />
     <Compile Include="Models\UExcursion.cs" />
     <Compile Include="Models\UFaculty.cs" />
@@ -208,10 +224,12 @@
     <Compile Include="Models\UNewspaper.cs" />
     <Compile Include="Models\UObject.cs" />
     <Compile Include="Models\UPerson.cs" />
+    <Compile Include="Models\UPlan.cs" />
     <Compile Include="Models\UPracticeRoom.cs" />
     <Compile Include="Models\UPrintEdition.cs" />
     <Compile Include="Models\UProcess.cs" />
     <Compile Include="Models\URepair.cs" />
+    <Compile Include="Models\UReporting.cs" />
     <Compile Include="Models\URoom.cs" />
     <Compile Include="Models\USportBuilding.cs" />
     <Compile Include="Models\UStudent.cs" />
@@ -221,6 +239,8 @@
     <Compile Include="Models\UStudyingRoom.cs" />
     <Compile Include="Models\USymbol.cs" />
     <Compile Include="Models\UTeacher.cs" />
+    <Compile Include="Models\UTechniqueInventory.cs" />
+    <Compile Include="Models\UTransportInventory.cs" />
     <Compile Include="Models\UWorkingPerson.cs" />
     <Compile Include="ViewModels\UObjectViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -268,6 +288,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\UEducationalSubjectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\UEventWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -312,6 +336,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\UPlanWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\UPracticeRoomWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -325,6 +353,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\URepairWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UReportingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -364,6 +396,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\UTechniqueInventoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UTransportInventoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\UWorkingPersonWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -395,8 +435,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201812202306019_Initial.resx">
-      <DependentUpon>201812202306019_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812210053549_Initial.resx">
+      <DependentUpon>201812210053549_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
