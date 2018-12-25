@@ -20,11 +20,9 @@ namespace UniversityDB.Infrastructure
         }
         private static void OnExpandingBehaviourChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            TreeViewItem tvi = d as TreeViewItem;
-            if (tvi != null)
+            if (d is TreeViewItem tvi)
             {
-                ICommand ic = e.NewValue as ICommand;
-                if (ic != null)
+                if (e.NewValue is ICommand ic)
                 {
                     tvi.Expanded += (s, a) =>
                     {

@@ -16,6 +16,8 @@ namespace UniversityDB.Models
         [Required]
         public string Name { get; set; }
 
+        public string UkrName { get; set; }
+
         [Required]
         public string FormName { get; set; }
 
@@ -27,9 +29,10 @@ namespace UniversityDB.Models
             AllowedChildrens = new ObservableCollection<SClassRules>();
         }
 
-        public SClass(string name, string formName)
+        public SClass(string name, string ukrName, string formName)
         {
             Name = name;
+            UkrName = ukrName;
             FormName = formName;
         }
 

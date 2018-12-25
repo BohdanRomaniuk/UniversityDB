@@ -40,9 +40,14 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="GongSolutions.Wpf.DragDrop, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\gong-wpf-dragdrop.1.1.0\lib\net46\GongSolutions.Wpf.DragDrop.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -61,15 +66,129 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\NamedTextBox.xaml.cs">
+      <DependentUpon>NamedTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SaveCancelButtons.xaml.cs">
+      <DependentUpon>SaveCancelButtons.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\MultiCommandparameterConverter.cs" />
+    <Compile Include="Forms\UBotanicGardenBuildingWindow.xaml.cs">
+      <DependentUpon>UBotanicGardenBuildingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UBuildingWindow.xaml.cs">
+      <DependentUpon>UBuildingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UCampBuildingWindow.xaml.cs">
+      <DependentUpon>UCampBuildingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UClinicBuildingWindow.xaml.cs">
+      <DependentUpon>UClinicBuildingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UContractWindow.xaml.cs">
+      <DependentUpon>UContractWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UDeaneryWindow.xaml.cs">
+      <DependentUpon>UDeaneryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UDepartmentWindow.xaml.cs">
+      <DependentUpon>UDepartmentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UDiningRoomWindow.xaml.cs">
+      <DependentUpon>UDiningRoomWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UDocumentWindow.xaml.cs">
+      <DependentUpon>UDocumentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UEducationalSubjectWindow.xaml.cs">
+      <DependentUpon>UEducationalSubjectWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UEventWindow.xaml.cs">
+      <DependentUpon>UEventWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UExcursionWindow.xaml.cs">
+      <DependentUpon>UExcursionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UFacultyWindow.xaml.cs">
+      <DependentUpon>UFacultyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UFestivalWindow.xaml.cs">
+      <DependentUpon>UFestivalWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UGradebookWindow.xaml.cs">
+      <DependentUpon>UGradebookWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UInventoryWindow.xaml.cs">
+      <DependentUpon>UInventoryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UMagazineWindow.xaml.cs">
+      <DependentUpon>UMagazineWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UMaterialWindow.xaml.cs">
+      <DependentUpon>UMaterialWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UMeetingWindow.xaml.cs">
+      <DependentUpon>UMeetingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UNewspaperWindow.xaml.cs">
+      <DependentUpon>UNewspaperWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UObjectWindow.xaml.cs">
       <DependentUpon>UObjectWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\UPersonWindow.xaml.cs">
       <DependentUpon>UPersonWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UPlanWindow.xaml.cs">
+      <DependentUpon>UPlanWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UPracticeRoomWindow.xaml.cs">
+      <DependentUpon>UPracticeRoomWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UPrintEditionWindow.xaml.cs">
+      <DependentUpon>UPrintEditionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UProcessWindow.xaml.cs">
+      <DependentUpon>UProcessWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\URepairWindow.xaml.cs">
+      <DependentUpon>URepairWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UReportingWindow.xaml.cs">
+      <DependentUpon>UReportingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\URoomWindow.xaml.cs">
+      <DependentUpon>URoomWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\USportBuildingWindow.xaml.cs">
+      <DependentUpon>USportBuildingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UStudentTicketWindow.xaml.cs">
+      <DependentUpon>UStudentTicketWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UStudentWindow.xaml.cs">
+      <DependentUpon>UStudentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UStudyingBuildingWindow.xaml.cs">
+      <DependentUpon>UStudyingBuildingWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UStudyingPersonWindow.xaml.cs">
       <DependentUpon>UStudyingPersonWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UStudyingRoomWindow.xaml.cs">
+      <DependentUpon>UStudyingRoomWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\USymbolWindow.xaml.cs">
+      <DependentUpon>USymbolWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UTeacherWindow.xaml.cs">
+      <DependentUpon>UTeacherWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UTechniqueInventoryWindow.xaml.cs">
+      <DependentUpon>UTechniqueInventoryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UTransportInventoryWindow.xaml.cs">
+      <DependentUpon>UTransportInventoryWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\UWorkingPersonWindow.xaml.cs">
       <DependentUpon>UWorkingPersonWindow.xaml</DependentUpon>
@@ -77,33 +196,145 @@
     <Compile Include="Infrastructure\Behaviours.cs" />
     <Compile Include="Infrastructure\Command.cs" />
     <Compile Include="Infrastructure\Enums\FormType.cs" />
+    <Compile Include="Infrastructure\MouseDoubleClick.cs" />
     <Compile Include="Infrastructure\UniversityContext.cs" />
-    <Compile Include="Migrations\201809272132182_Initial.cs" />
-    <Compile Include="Migrations\201809272132182_Initial.Designer.cs">
-      <DependentUpon>201809272132182_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810111308044_SelfFKNullable.cs" />
-    <Compile Include="Migrations\201810111308044_SelfFKNullable.Designer.cs">
-      <DependentUpon>201810111308044_SelfFKNullable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810131717597_ClassesFKRequired.cs" />
-    <Compile Include="Migrations\201810131717597_ClassesFKRequired.Designer.cs">
-      <DependentUpon>201810131717597_ClassesFKRequired.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810181037437_ClassesRules.cs" />
-    <Compile Include="Migrations\201810181037437_ClassesRules.Designer.cs">
-      <DependentUpon>201810181037437_ClassesRules.cs</DependentUpon>
+    <Compile Include="Migrations\201812210053549_Initial.cs" />
+    <Compile Include="Migrations\201812210053549_Initial.Designer.cs">
+      <DependentUpon>201812210053549_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SClass.cs" />
     <Compile Include="Models\SClassRules.cs" />
+    <Compile Include="Models\UBotanicGardenBuilding.cs" />
+    <Compile Include="Models\UBuilding.cs" />
+    <Compile Include="Models\UCampBuilding.cs" />
+    <Compile Include="Models\UClinicBuilding.cs" />
+    <Compile Include="Models\UContract.cs" />
+    <Compile Include="Models\UDeanery.cs" />
+    <Compile Include="Models\UDepartment.cs" />
+    <Compile Include="Models\UDiningRoom.cs" />
+    <Compile Include="Models\UDocument.cs" />
+    <Compile Include="Models\UEducationalSubject.cs" />
+    <Compile Include="Models\UEvent.cs" />
+    <Compile Include="Models\UExcursion.cs" />
+    <Compile Include="Models\UFaculty.cs" />
+    <Compile Include="Models\UFestival.cs" />
+    <Compile Include="Models\UGradebook.cs" />
+    <Compile Include="Models\UInventory.cs" />
+    <Compile Include="Models\UMagazine.cs" />
     <Compile Include="Models\UMaterials.cs" />
+    <Compile Include="Models\UMeeting.cs" />
+    <Compile Include="Models\UNewspaper.cs" />
     <Compile Include="Models\UObject.cs" />
     <Compile Include="Models\UPerson.cs" />
+    <Compile Include="Models\UPlan.cs" />
+    <Compile Include="Models\UPracticeRoom.cs" />
+    <Compile Include="Models\UPrintEdition.cs" />
+    <Compile Include="Models\UProcess.cs" />
+    <Compile Include="Models\URepair.cs" />
+    <Compile Include="Models\UReporting.cs" />
+    <Compile Include="Models\URoom.cs" />
+    <Compile Include="Models\USportBuilding.cs" />
+    <Compile Include="Models\UStudent.cs" />
+    <Compile Include="Models\UStudentTicket.cs" />
+    <Compile Include="Models\UStudyingBuilding.cs" />
     <Compile Include="Models\UStudyingPerson.cs" />
+    <Compile Include="Models\UStudyingRoom.cs" />
+    <Compile Include="Models\USymbol.cs" />
+    <Compile Include="Models\UTeacher.cs" />
+    <Compile Include="Models\UTechniqueInventory.cs" />
+    <Compile Include="Models\UTransportInventory.cs" />
     <Compile Include="Models\UWorkingPerson.cs" />
     <Compile Include="ViewModels\UObjectViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Page Include="Controls\NamedTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SaveCancelButtons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UBotanicGardenBuildingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UBuildingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UCampBuildingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UClinicBuildingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UContractWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UDeaneryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UDepartmentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UDiningRoomWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UDocumentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UEducationalSubjectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UEventWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UExcursionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UFacultyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UFestivalWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UGradebookWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UInventoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UMagazineWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UMaterialWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UMeetingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UNewspaperWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\UObjectWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -112,7 +343,71 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\UPlanWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UPracticeRoomWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UPrintEditionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UProcessWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\URepairWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UReportingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\URoomWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\USportBuildingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UStudentTicketWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UStudentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UStudyingBuildingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\UStudyingPersonWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UStudyingRoomWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\USymbolWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UTeacherWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UTechniqueInventoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UTransportInventoryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -147,22 +442,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201809272132182_Initial.resx">
-      <DependentUpon>201809272132182_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810111308044_SelfFKNullable.resx">
-      <DependentUpon>201810111308044_SelfFKNullable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810131717597_ClassesFKRequired.resx">
-      <DependentUpon>201810131717597_ClassesFKRequired.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810181037437_ClassesRules.resx">
-      <DependentUpon>201810181037437_ClassesRules.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812210053549_Initial.resx">
+      <DependentUpon>201812210053549_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

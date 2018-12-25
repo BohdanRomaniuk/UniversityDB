@@ -3,6 +3,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:dd="urn:gong-wpf-dragdrop"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UniversityDB"
         xmlns:model="clr-namespace:UniversityDB.Models"
@@ -14,52 +15,43 @@
         <converters:MultiCommandparameterConverter x:Key="MultiCommandparameterConverter"></converters:MultiCommandparameterConverter>
     </Window.Resources>
     <Grid>
-        <TreeView x:Name="treeView" ItemsSource="{Binding Faculties, UpdateSourceTrigger=PropertyChanged}">
+        <TreeView x:Name="treeView" ItemsSource="{Binding Faculties, UpdateSourceTrigger=PropertyChanged}"
+                      dd:DragDrop.IsDragSource="True"
+                      dd:DragDrop.IsDropTarget="True"
+                      dd:DragDrop.UseDefaultDragAdorner="True"
+                      dd:DragDrop.UseDefaultEffectDataTemplate="True"
+                      dd:DragDrop.DropHandler="{Binding}">
             <TreeView.Resources>
                 <Style TargetType="TreeViewItem" >
                     <Setter Property="bindTreeViewExpand:Behaviours.ExpandingBehaviour"
                             Value="{Binding DataContext.ExpandCommand, Source={x:Reference treeView}}" />
                 </Style>
-                <HierarchicalDataTemplate DataType="{x:Type model:UObject}" ItemsSource="{Binding Path=Childrens, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <HierarchicalDataTemplate DataType="{x:Type model:UObject}"  ItemsSource="{Binding Path=Childrens, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <TextBlock Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <TextBlock.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Header="Переглянути"
-                                          Command="{Binding DataContext.ViewCommand, Source={x:Reference treeView}}"
-                                          CommandParameter="{Binding}"/>
-                                <MenuItem Header="Додати"
-                                          ItemsSource="{Binding Class.AllowedChildrens}">
-                                    <MenuItem.ItemContainerStyle>
-                                        <Style TargetType="{x:Type MenuItem}">
-                                            <Setter Property="Header" Value="{Binding ClassInside.Name}"/>
-                                            <Setter Property="Command" Value="{Binding DataContext.AddCommand, Source={x:Reference treeView}}"/>
-                                            <!--<Setter Property="CommandParameter"
-                                                    Value="{Binding 
-                                                        RelativeSource={RelativeSource Mode=FindAncestor, 
-                                                        AncestorType={x:Type ContextMenu}},
-                                                        Path=DataContext}">
-                                            </Setter>-->
-                                            <Setter Property="CommandParameter">
-                                                <Setter.Value>
-                                                    <MultiBinding Converter="{StaticResource MultiCommandparameterConverter}">
-                                                        <!--UObject from UI-->
-                                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor, 
+                            <ContextMenu ItemsSource="{Binding Actions}">
+                                <ContextMenu.ItemContainerStyle>
+                                    <Style TargetType="{x:Type MenuItem}">
+                                        <Setter Property="Command" Value="{Binding Action}" />
+                                        <Setter Property="CommandParameter">
+                                            <Setter.Value>
+                                                <MultiBinding Converter="{StaticResource MultiCommandparameterConverter}">
+                                                    <!--UObject from UI-->
+                                                    <Binding RelativeSource="{RelativeSource Mode=FindAncestor, 
                                                                                                  AncestorType={x:Type ContextMenu}}"
                                                                  Path="DataContext" />
-                                                        <!--AddOption with Name of object to add-->
-                                                        <Binding Path="ClassInside.Name"/>
-                                                    </MultiBinding>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </MenuItem.ItemContainerStyle>
-                                </MenuItem>
-                                <MenuItem  Header="Редагувати"
-                                           CommandParameter="{Binding}"
-                                           Command="{Binding DataContext.EditCommand, Source={x:Reference treeView}}"/>
-                                <MenuItem  Header="Видалити"
-                                           CommandParameter="{Binding}"
-                                           Command="{Binding DataContext.DeleteCommand, Source={x:Reference treeView}}"/>
+                                                    <!--AddOption with Name of object to add-->
+                                                    <Binding Path="Name"/>
+                                                </MultiBinding>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ContextMenu.ItemContainerStyle>
+                                <ContextMenu.ItemTemplate>
+                                    <HierarchicalDataTemplate  DataType="{x:Type local:ContextAction}" ItemsSource="{Binding Path=Subs}">
+                                        <TextBlock Text="{Binding Name}"/>
+                                    </HierarchicalDataTemplate>
+                                </ContextMenu.ItemTemplate>
                             </ContextMenu>
                         </TextBlock.ContextMenu>
                     </TextBlock>

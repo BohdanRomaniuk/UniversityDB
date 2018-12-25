@@ -38,7 +38,6 @@ namespace UniversityDB.ViewModels
             get
             {
                 return isReadOnly;
-
             }
             set
             {
@@ -113,12 +112,14 @@ namespace UniversityDB.ViewModels
 
                 //Fix deleting bug
                 Current.Parent = Parent;
+                //Fix expander bug
                 Parent.Childrens.Add(objectFromDb);
             }
             else if (Type == FormType.Edit)
             {
                 UObject objectFromDb = db.Objects.Where(o => o.Id == Current.Id).SingleOrDefault();
                 Current.CopyPropertiesTo(objectFromDb);
+                objectFromDb.Class = null;
                 db.SaveChanges();
             }
             CloseWindow((Window)parameter);

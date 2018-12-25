@@ -18,5 +18,17 @@ namespace UniversityDB.Models
         {
             Type = _type;
         }
+
+        //---------Hierarchy of Behavior
+        //protected override void CreateActions()
+        //{
+        //    base.CreateActions();
+        //}
+
+        public override void CopyPropertiesTo(UObject another)
+        {
+            base.CopyPropertiesTo(another);
+            (another as UMaterial).Type = Type;
+        }
     }
 }

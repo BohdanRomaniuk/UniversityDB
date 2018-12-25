@@ -1,0 +1,87 @@
+﻿<Window x:Class="UniversityDB.Forms.UDeaneryWindow"
+        x:Name="DeaneryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:commandBehaviours="clr-namespace:UniversityDB.Infrastructure"
+        xmlns:controls="clr-namespace:UniversityDB.Controls"
+        mc:Ignorable="d"
+        Title="{Binding Current.Name, UpdateSourceTrigger=PropertyChanged}" SizeToContent="WidthAndHeight">
+    <StackPanel>
+        <controls:NamedTextBox Title="Ідентифікатор:" Text="Id"  DataContext="{Binding}" IsReadOnly="True"/>
+        <controls:NamedTextBox Title="Назва:" Text="Name" DataContext="{Binding}" IsReadOnly="{Binding IsReadOnly}"/>
+        <controls:NamedTextBox Title="Адреса:" Text="Address" DataContext="{Binding}" IsReadOnly="{Binding IsReadOnly}"/>
+        <controls:NamedTextBox Title="Телефон:" Text="Phone" DataContext="{Binding}" IsReadOnly="{Binding IsReadOnly}"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Декан:"/>
+            <Grid Grid.Column="1" MinWidth="150" MaxWidth="150">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Text="{Binding Current.Decan, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly}" Margin="0 3"/>
+                <Button Content="Додати" Grid.Column="1" Margin="3">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Style.Triggers>
+                                <EventTrigger RoutedEvent="Click">
+                                    <EventTrigger.Actions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="ContextMenu.IsOpen">
+                                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="True"/>
+                                                </BooleanAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger.Actions>
+                                </EventTrigger>
+                            </Style.Triggers>
+                            <Setter Property="ContextMenu">
+                                <Setter.Value>
+                                    <ContextMenu>
+                                        <ContextMenu.Template>
+                                            <ControlTemplate>
+                                                <Grid>
+                                                    <TreeView >
+                                                        <TreeView.ItemContainerStyle>
+                                                            <Style TargetType="{x:Type TreeViewItem}">
+                                                                <Setter Property="commandBehaviours:MouseDoubleClick.Command"
+                    Value="{Binding YourCommand}"/>
+                                                                <Setter Property="commandBehaviours:MouseDoubleClick.CommandParameter"
+                    Value="{Binding}"/>
+                                                            </Style>
+                                                        </TreeView.ItemContainerStyle>
+                                                        <TreeViewItem Header="Дияк І. І." commandBehaviours:MouseDoubleClick.Command="{Binding DataContext.YourCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
+                                                            <TreeViewItem Header="Ступінь" />
+                                                            <TreeViewItem Header="Навчання" />
+                                                        </TreeViewItem>
+                                                        <TreeViewItem Header="Горлач В. М.">
+                                                            <TreeViewItem Header="Cтупінь">
+                                                                <TreeViewItem Header="Кандидатська" />
+                                                                <TreeViewItem Header="Освіта" />
+                                                            </TreeViewItem>
+                                                            <TreeViewItem Header="Навчання">
+                                                            </TreeViewItem>
+                                                        </TreeViewItem>
+                                                    </TreeView>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </ContextMenu.Template>
+                                    </ContextMenu>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+        </Grid>
+        <controls:NamedTextBox Title="Клас:" Text="Class.Name" DataContext="{Binding}" IsReadOnly="True"/>
+        <controls:NamedTextBox Title="Батьківський тип:" Text="Parent.Name" DataContext="{Binding}" IsReadOnly="True"/>
+        <controls:SaveCancelButtons DataContext="{Binding}" CurrentWindow="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
+    </StackPanel>
+</Window>

@@ -1,6 +1,7 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Windows;
+using UniversityDB.Infrastructure;
 
 namespace UniversityDB.Models
 {
@@ -18,6 +19,23 @@ namespace UniversityDB.Models
             :base(_name, _birthday, _address, _class)
         {
             AvarageMark = _avgMark;
+        }
+
+        protected override void CreateActions()
+        {
+            base.CreateActions();
+            Actions.Add(new ContextAction() { Name = "Сер. оцінка", Action = new Command(ShowAvgMark) });
+        }
+
+        private void ShowAvgMark(object parameters)
+        {
+            MessageBox.Show(AvarageMark.ToString(), "Cередня оцінка", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        public override void CopyPropertiesTo(UObject another)
+        {
+            base.CopyPropertiesTo(another);
+            (another as UStudyingPerson).AvarageMark = AvarageMark;
         }
     }
 }
